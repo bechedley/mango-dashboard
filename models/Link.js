@@ -14,8 +14,8 @@ Link.init(
       autoIncrement: true
     },
     link_url: {
-      type: DataTypes.VARCHAR(50),
-      allowNull: true
+      type: DataTypes.STRING,
+      allowNull: false
     },
     
     }

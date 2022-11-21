@@ -13,13 +13,17 @@ Project.init(
       primaryKey: true,
       autoIncrement: true
     },
+    project_name: {
+        type: DataTypes.VARCHAR(30),
+        allowNull: false
+    },
     project_budget: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: true
     },
     project_due: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     project_summary: {
         type: DataTypes.TINYTEXT,
