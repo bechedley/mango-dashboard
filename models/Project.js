@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
 // create our Project model
 class Project extends Model {}
@@ -11,48 +11,53 @@ Project.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     project_name: {
-        type: DataTypes.VARCHAR(30),
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     project_budget: {
       type: DataTypes.DECIMAL(10, 2),
-      allowNull: true
+      allowNull: true,
     },
     project_due: {
       type: DataTypes.DATE,
       allowNull: true,
     },
     project_summary: {
-        type: DataTypes.TINYTEXT,
-        allowNull: false
+      type: DataTypes.TEXT("tiny"),
+      allowNull: false,
     },
     project_description: {
-        type: DataTypes.LONGTEXT,
-        allowNull: true
+      type: DataTypes.TEXT("long"),
+      allowNull: true,
     },
     project_status: {
-        type: DataTypes.ENUM("active", "pending", "upcoming", "cancelled", "finished"),
-        allowNull: false
+      type: DataTypes.ENUM(
+        "active",
+        "pending",
+        "upcoming",
+        "cancelled",
+        "finished"
+      ),
+      allowNull: false,
     },
     user_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'user',
-          key: 'id',
-          unique: false
-        }
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+        unique: false,
       },
-    
-    }
+    },
+  },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project'
+    modelName: "project",
   }
 );
 
