@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // For changing NavBar-Toggler-Icon
     var icon = document.getElementById('icon');
 
-    function chnageIcon() {
+    function changeIcon() {
         count2++;
         if (count2 % 2 != 0) {
             icon.innerText = "";
