@@ -14,7 +14,7 @@ Project.init(
       autoIncrement: true,
     },
     project_name: {
-      type: DataTypes.VARCHAR(30),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     project_budget: {
@@ -26,11 +26,11 @@ Project.init(
       allowNull: true,
     },
     project_summary: {
-      type: DataTypes.TINYTEXT,
+      type: DataTypes.TEXT("tiny"),
       allowNull: false,
     },
     project_description: {
-      type: DataTypes.LONGTEXT,
+      type: DataTypes.TEXT("long"),
       allowNull: true,
     },
     project_status: {
