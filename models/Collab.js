@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
 // create our Collab model
 class Collab extends Model {}
@@ -11,19 +11,19 @@ Collab.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
-    collab_email: { 
+    collab_email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
-    }
+  },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'collab'
+    modelName: "collab",
   }
 );
 

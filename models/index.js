@@ -7,15 +7,15 @@ const ProjectTag = require("./ProjectTag");
 const ProjectLink = require("./ProjectLink");
 const ProjectCollab = require("./ProjectCollab");
 
+// User can owns many projects
+User.hasMany(Project, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE"
+}); 
+
 // Project belongsTo user
 Project.belongsTo(User, {
-  // Define the third table needed to store the foreign keys
-  through: {
-    model: Project,
-    unique: false,
-  },
-  // Define an alias for when data is retrieved
-  as: "user_projects",
+  foreignKey: "user_id",
 });
 
 // Projects belongsToMany Collabs
