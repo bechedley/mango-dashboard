@@ -15,7 +15,7 @@ const projectData = [
     project_budget: 20000.00,
     project_due: '2023-07-03',
     project_summary: "eCommerce store for clothing brand",
-    project_description: "This project includes detailed product information and filtering with animated content and a responsive eCommerce mobile application.",
+    project_description: "This project includes detailed information and filtering with animated content and a responsive eCommerce mobile application.",
     project_status: "upcoming",
     user_id: 5,
   },
