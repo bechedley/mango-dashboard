@@ -1,0 +1,5 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS projectManagement_db;
+
+-- CREATE DATABASE
+CREATE DATABASE projectManagement_db;
