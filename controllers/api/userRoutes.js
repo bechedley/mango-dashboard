@@ -21,21 +21,21 @@ router.post("/login", async (req, res) => {
     // If the user did not provide either email or password
     const { email, password } = req.body;
     console.log(email, password, !email || !password);
-    if (!email || !password) {
-      return res
-        .status(400)
-        .send({ message: "Please provide both email and password" });
-    }
+    // if (!email || !password) {
+    //   return res
+    //     .status(400)
+    //     .send({ message: "Please provide both email and password" });
+    // }
 
     const userData = await User.findOne({ where: { email } });
     console.log(userData, userData.checkPassword(password));
 
-    if (!userData || !userData.checkPassword(password)) {
-      res
-        .status(400)
-        .json({ message: "Incorrect email or password, please try again" });
-      return;
-    }
+    // if (!userData || !userData.checkPassword(password)) {
+    //   res
+    //     .status(400)
+    //     .json({ message: "Incorrect email or password, please try again" });
+    //   return;
+    // }
 
     req.session.save(() => {
       req.session.user_id = userData.id;

@@ -1,145 +1,106 @@
 <div class="container-fluid mt-5">
-  <div
-    class="bg-white rounded d-flex align-items-center justify-content-between"
-    id="header"
-  >
-    <button
-      class="btn btn-hide text-uppercase"
-      type="button"
-      data-toggle="collapse"
-      data-target="#filterbar"
-      aria-expanded="false"
-      aria-controls="filterbar"
-      id="filter-btn"
-      onclick="changeBtnTxt()"
-    >
-      <span class="fa fa-angle-left" id="filter-angle"></span>
-      <span id="btn-txt">Hide filters</span>
-    </button>
-    <form class="form-inline ml-2">
-      <input
-        class="form-control mr-sm-2"
-        type="search"
-        placeholder="Search"
-        aria-label="Search"
-      />
-      <button
-        class="btn btn-outline-success my-2 my-sm-0"
-        type="submit"
-      >Search</button>
-    </form>
-    <select name="sort" id="sort">
-      <option value="" hidden selected>Sort by</option>
-      <option value="price">Price</option>
-      <option value="popularity">Popularity</option>
-      <option value="rating">Rating</option>
-    </select>
-    <nav class="navbar navbar-expand-lg navbar-light pl-lg-0 pl-auto">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#mynav"
-        aria-controls="mynav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-        onclick="changeIcon()"
-        id="icon"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </nav>
-    <div class="ml-auto mt-3 mr-2">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true" class="font-weight-bold">&lt;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">..</a></li>
-          <li class="page-item"><a class="page-link" href="#">24</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true" class="font-weight-bold">&gt;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <div class="bg-white rounded d-flex align-items-center justify-content-between" id="header">
+        <button class="btn btn-hide text-uppercase" type="button" data-toggle="collapse" data-target="#filterbar"
+            aria-expanded="false" aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
+            <span class="fa fa-angle-left" id="filter-angle"></span>
+            <span id="btn-txt">Hide filters</span>
+        </button>
+        <form class="form-inline ml-2">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <select name="sort" id="sort">
+            <option value="" hidden selected>Sort by</option>
+            <option value="price">Price</option>
+            <option value="popularity">Popularity</option>
+            <option value="rating">Rating</option>
+        </select>
+        <nav class="navbar navbar-expand-lg navbar-light pl-lg-0 pl-auto">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynav"
+                aria-controls="mynav" aria-expanded="false" aria-label="Toggle navigation" onclick="changeIcon()"
+                id="icon">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+        <div class="ml-auto mt-3 mr-2">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true" class="font-weight-bold">&lt;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">..</a></li>
+                    <li class="page-item"><a class="page-link" href="#">24</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true" class="font-weight-bold">&gt;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
-  </div>
-  <div id="content" class="my-5">
-    <div id="filterbar" class="collapse">
-      <div class="box border-bottom">
-        <div class="form-group text-center">
-          <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-success form-check-label">
-              <input class="form-check-input" type="radio" />
-              Reset
-            </label>
-            <label class="btn btn-success form-check-label active">
-              <input class="form-check-input" type="radio" checked />
-              Apply
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="box border-bottom">
-        <div class="box-label text-uppercase d-flex align-items-center">Tags
-          <button
-            class="btn ml-auto"
-            type="button"
-            data-toggle="collapse"
-            data-target="#inner-box"
-            aria-expanded="false"
-            aria-controls="inner-box"
-            id="out"
-            onclick="outerFilter()"
-          >
-            <span class="fa fa-plus"></span>
-          </button>
-        </div>
-        <div id="inner-box" class="collapse mt-2 mr-1">
-          {{#each tags as |tag|}}
-            <div class="my-1">
-              <label class="tick">{{tag.tag_name}}
-                <input type="checkbox" />
-                <span class="check"></span>
-              </label>
-            </div>
-          {{/each}}
-        </div>
-      </div>
-    </div>
-    <div id="projects">
-      <div class="row mx-0">
-        <div class="col-lg-4 col-md-6">
-          {{#each projects as |project|}}
-            <div class="card d-flex flex-column align-items-center">
-              <div class="project-name">{{project.project_name}}</div>
-              <div class="card-img">
-                <br />
-                <p>{{project.project_summary}}</p>
-              </div>
-              <div class="card-body pt-5">
-                <div
-                  class="d-flex align-items-center justify-content-center colors my-2"
-                >
-                  <button
-                    class="btn btn-warning my-2 my-sm-0"
-                    type="submit"
-                  >{{project.project_status}}</button>
+    <div id="content" class="my-5">
+        <div id="filterbar" class="collapse">
+            <div class="box border-bottom">
+                <div class="form-group text-center">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-success form-check-label">
+                            <input class="form-check-input" type="radio" />
+                            Reset
+                        </label>
+                        <label class="btn btn-success form-check-label active">
+                            <input class="form-check-input" type="radio" checked />
+                            Apply
+                        </label>
+                    </div>
                 </div>
-              </div>
             </div>
-          {{/each}}
+            <div class="box border-bottom">
+                <div class="box-label text-uppercase d-flex align-items-center">Tags
+                    <button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box"
+                        aria-expanded="false" aria-controls="inner-box" id="out" onclick="outerFilter()">
+                        <span class="fa fa-plus"></span>
+                    </button>
+                </div>
+                <div id="inner-box" class="collapse mt-2 mr-1">
+                    {{#each tags as |tag|}}
+                    <div class="my-1">
+                        <label class="tick">{{tag.tag_name}}
+                            <input type="checkbox" />
+                            <span class="check"></span>
+                        </label>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
         </div>
-      </div>
+        <div id="projects">
+            <div class="row mx-0">
+                <div class="col-lg-4 col-md-6">
+                    {{#each projects as |project|}}
+                    <div class="card d-flex flex-column align-items-center">
+                        <div class="project-name">{{project.project_name}}</div>
+                        <div class="card-img">
+                            <br />
+                            <p>{{project.project_summary}}</p>
+                        </div>
+                        <div class="card-body pt-5">
+                            <div class="d-flex align-items-center justify-content-center colors my-2">
+                                <button class="btn btn-warning my-2 my-sm-0"
+                                    type="submit">{{project.project_status}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <footer></footer>
 <script src="/js/main.js"></script>
