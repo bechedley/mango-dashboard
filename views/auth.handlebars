@@ -31,28 +31,24 @@
         <div class="row">
             <div class="col-md-5 mx-auto">
                 <div id="first">
-                    <div class="myform form ">
+                    <div class="myform">
                         <div class="logo mb-3">
                             <div class="col-md-12 text-center">
                                 <h1>Login</h1>
                             </div>
                         </div>
-                        <form class="login-form" action="" method="post" name="login">
+                        <form class="form login-form">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" name="email" class="form-control" id="email-login"
-                                    aria-describedby="emailHelp" placeholder="Enter email">
+                                <label for="email-login">Email address</label>
+                                <input type="text" name="email" class="form-control" id="email-login" placeholder="Enter email">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" name="password" id="password-login" class="form-control"
-                                    aria-describedby="emailHelp" placeholder="Enter Password">
+                                <label for="password-login">Password</label>
+                                <input type="password" name="password" id="password-login" class="form-control" placeholder="Enter Password">
                             </div>
-                            <div class="form-group">
-                                <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
-                            </div>
-                            <div class="col-md-12 text-center ">
-                                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                            <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
+                            <div class="col-md-12 text-center form-group">
+                                <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">Login</button>
                             </div>
                             <div class="col-md-12 ">
                                 <div class="login-or">
@@ -67,21 +63,18 @@
                                     </a>
                                 </p>
                             </div>
-                            <div class="form-group">
-                                <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
-                            </div>
+                            <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
                         </form>
-
                     </div>
                 </div>
                 <div id="second">
-                    <div class="myform form ">
+                    <div class="myform">
                         <div class="logo mb-3">
                             <div class="col-md-12 text-center">
                                 <h1>Signup</h1>
                             </div>
                         </div>
-                        <form action="#" class="signup-form" name="registration">
+                        <form class="form signup-form" name="registration">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Username</label>
                                 <input type="text" name="username" class="form-control" id="username-signup"
@@ -112,7 +105,7 @@
             </div>
         </div>
     </div>
-    <script src="js/login.js"></script>
+    <script src="/js/login.js"></script>
 </body>
 
 </html>
