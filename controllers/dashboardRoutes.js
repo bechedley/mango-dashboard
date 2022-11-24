@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Project, Tag, ProjectTag } = require("../models");
+const { Project, Tag, Collab, Link, ProjectLink, ProjectTag, ProjectCollab } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", (req, res) => {
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const projectData = await Project.findAll({
-      include: [{ model: Tag, through: ProjectTag, as: "related_tags" }],
+      include: [{ model: Tag, through: ProjectTag, as: "related_tags" }, { model: Collab, through: ProjectCollab, as: "project_contributors" }, { model: Link, through: ProjectLink, as: "project_urls" }],
       order: [["project_due", "ASC"]],
     });
 
@@ -39,13 +39,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 router.get("/project/:id", withAuth, async (req, res) => {
   try {
     const projectData = await Project.findByPk(req.params.id, {
-      include: [
-        {
-          model: Tag,
-          through: ProjectTag,
-          as: "related_tags",
-        },
-      ],
+      include: [{ model: Tag, through: ProjectTag, as: "related_tags" }, { model: Collab, through: ProjectCollab, as: "project_contributors" }, { model: Link, through: ProjectLink, as: "project_urls" }],
     });
 
     const project = projectData.get({ plain: true });

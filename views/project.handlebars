@@ -4,8 +4,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto me-auto">
-                <h1 class="text-muted">{{project.project_name}} <span>{{project.project_due}}</span> <span><button type="button" class="btn"
-                            data-bs-toggle="modal" data-bs-target="#projectModal"><i
+                <h1 class="text-muted">{{project.project_name}} <span>{{project.project_due}}</span> <span><button
+                            type="button" class="btn" data-bs-toggle="modal" data-bs-target="#projectModal"><i
                                 class="fa-solid fa-pen"></i></button></span>
                 </h1>
             </div>
@@ -13,7 +13,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Status
+                        {{project.project_status}}
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Active</a></li>
@@ -33,61 +33,43 @@
         <div class="col-6">
 
             <div class="container mt-5 text-muted">
-                <p>{{project.project_budget}} <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#priceModal"><i
-                                class="fa-solid fa-plus"></i></button></span>
+                <p>{{project.project_budget}} <span><button type="button" class="btn" data-bs-toggle="modal"
+                            data-bs-target="#priceModal"><i class="fa-solid fa-plus"></i></button></span>
                 </p>
             </div>
             <div class="container my-5 text-muted">
                 <p>Collaborators <span><button type="button" class="btn" data-bs-toggle="modal"
                             data-bs-target="#collModal"><i class="fa-solid fa-plus"></i></button></p>
                 <div class="row">
-                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
-                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
-                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
-                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
-                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
-                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
-                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
-                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
+                    {{#each project.project_contributors as |collab|}}
+                    <div class="col-md-6 mt-2 mb-2">
+                        <a href={{collab.collab_email}}><span>{{collab.collab_email}}</span></a>
+                    </div>
+                    {{/each}}
+
                 </div>
             </div>
             <div class="container my-5 text-muted">
                 <p>Links <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#linkModal"><i
                                 class="fa-solid fa-plus"></i></button></p>
                 <div class="row">
+
+                  {{#each project.project_urls as |link|}}
                     <div class="col-md-6 mt-2 mb-2">
-                        <span>www.xxxxxxxxxxx.com.au</span>
+                        <a href={{link.link_url}}><span>{{link.link_url}}</span></a>
                     </div>
-                    <div class="col-md-6 mt-2 mb-2">
-                        <span>www.xxxxxxxxxxx.com.au</span>
-                    </div>
-                    <div class="col-md-6 mt-2 mb-2">
-                        <span>www.xxxxxxxxxxx.com.au</span>
-                    </div>
-                    <div class="col-md-6 mt-2 mb-2">
-                        <span>www.xxxxxxxxxxx.com.au</span>
-                    </div>
-                    <div class="col-md-6 mt-2 mb-2">
-                        <span>www.xxxxxxxxxxx.com.au</span>
-                    </div>
-                    <div class="col-md-6 mt-2 mb-2">
-                        <span>www.xxxxxxxxxxx.com.au</span>
-                    </div>
-                    <div class="col-md-6 mt-2 mb-2">
-                        <span>www.xxxxxxxxxxx.com.au</span>
-                    </div>
+                    {{/each}}
                 </div>
             </div>
             <div class="container my-5  text-muted">
                 <p>Tags <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#tagModal"><i
                                 class="fa-solid fa-plus"></i></button></p>
                 <div class="row">
-                    {{#each related_tags as |related_tag|}}
-                    <div class="my-1">
-                        <label class="tick">{{tag.tag_name}}
-                            <input type="checkbox" />
-                            <span class="check"></span>
-                        </label>
+                    {{#each project.related_tags as |tag|}}
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-dark tag-delete"><span><i
+                                    class="fa-solid fa-xmark"></i>
+                                {{tag_name}}</span></button>
                     </div>
                     {{/each}}
                 </div>
