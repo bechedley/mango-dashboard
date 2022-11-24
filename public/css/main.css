@@ -22,6 +22,11 @@ h1 {
     font-size: 54px;
 }
 
+.navbar {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .budget-text {
     font-size: 32px;
 }
@@ -135,6 +140,10 @@ button.btn-outline:focus {
 
 .btn-brown {
     background-color: #994a00;
+}
+
+.project-div {
+    margin-bottom: 10px;
 }
 
 .project-due-date {

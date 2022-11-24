@@ -1,7 +1,6 @@
 <div class="container-fluid mt-5">
     <div class="bg-white rounded d-flex align-items-center justify-content-between" id="header">
-        <button class="btn btn-hide text-uppercase" type="button" data-toggle="collapse" data-target="#filterbar"
-            aria-expanded="false" aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt(Show filters)">
+        <button class="btn btn-hide text-uppercase" type="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="filterbar" id="filter-btn">
             <span class="fa fa-angle-left" id="filter-angle"></span>
             <span id="btn-txt">Hide filters</span>
         </button>
@@ -42,12 +41,11 @@
             </div>
             <div class="box border-bottom">
                 <div class="box-label text-uppercase d-flex align-items-center">Tags
-                    <button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box"
-                        aria-expanded="false" aria-controls="inner-box" id="out" onclick="outerFilter()">
+                    <button class="btn ml-auto" type="button" id="out">
                         <span class="fa bi-plus"></span>
                     </button>
                 </div>
-                <div id="inner-box" class="collapse mt-2 mr-1">
+                <div id="inner-box" class="mt-2 mr-1">
                     {{#each tags as |tag|}}
                     <div class="my-1">
                         <label class="tick">{{tag.tag_name}}
