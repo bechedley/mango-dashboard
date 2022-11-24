@@ -36,6 +36,26 @@ router.get("/dashboard", withAuth, async (req, res) => {
   }
 });
 
+router.get("/project/:id", withAuth, async (req, res) => {
+  try {
+    const projectData = await Project.findByPk(req.params.id, {
+      include: [
+        {
+          model: Tag,
+          through: ProjectTag,
+          as: "related_tags",
+        },
+      ],
+    });
+
+    const project = projectData.get({ plain: true });
+    res.render("project", { project, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
