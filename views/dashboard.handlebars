@@ -81,8 +81,8 @@
         </div>
         <div id="projects">
             <div class="row mx-0">
+                {{#each projects as |project|}}
                 <div class="col-lg-4 col-md-6">
-                    {{#each projects as |project|}}
                     <div class="card d-flex flex-column align-items-center">
                         <div class="project-name">{{project.project_name}}</div>
                         <div class="card-img">
@@ -91,13 +91,12 @@
                         </div>
                         <div class="card-body pt-5">
                             <div class="d-flex align-items-center justify-content-center colors my-2">
-                                <button class="btn btn-warning my-2 my-sm-0"
-                                    type="submit">{{project.project_status}}</button>
+                                <button class="btn btn-warning my-2 my-sm-0" type="submit">{{project.project_status}}</button>
                             </div>
                         </div>
                     </div>
-                    {{/each}}
                 </div>
+                {{/each}}
             </div>
         </div>
     </div>
