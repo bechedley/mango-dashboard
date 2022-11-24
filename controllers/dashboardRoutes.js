@@ -2,7 +2,16 @@ const router = require("express").Router();
 const { Project, Tag, ProjectTag } = require("../models");
 const withAuth = require("../utils/auth");
 
-router.get("/", withAuth, async (req, res) => {
+router.get("/", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/dashboard");
+    return;
+  }
+
+  res.redirect("/login");
+});
+
+router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const projectData = await Project.findAll({
       include: [{ model: Tag, through: ProjectTag, as: "related_tags" }],
@@ -17,7 +26,7 @@ router.get("/", withAuth, async (req, res) => {
 
     const tags = tagData.map((tag) => tag.get({ plain: true }));
 
-    res.render("index", {
+    res.render("dashboard", {
       projects,
       tags,
       logged_in: req.session.logged_in,
