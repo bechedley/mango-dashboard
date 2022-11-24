@@ -8,7 +8,14 @@
 }
 
 body {
-    background-color: #f4f4f4
+    background-color: #f4f4f4;
+    height: 100%;
+}
+
+footer {
+    color: #f4f4f4;
+    background-color: #ff935d;
+    padding: 5px;
 }
 
 .container {
@@ -35,6 +42,27 @@ button.btn.btn-hide {
     padding-right: 40px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px
+}
+
+button.btn.btn-add {
+    height: inherit;
+    background-color: #ff935d;
+    color: #fff;
+    font-size: 0.82rem;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px
+}
+
+button.btn-outline {
+    border: #ff935d solid 0.5px;
+    color: #ff935d;
+}
+
+button.btn-outline:focus {
+    background-color: #ff935d;
+    color: #fff;
 }
 
 .btn:focus {
@@ -87,10 +115,14 @@ button.btn.btn-hide {
 select {
     outline: none;
     padding: 6px 12px;
-    margin: 0px 4px;
+    margin: 2px 2px;
     color: #999;
     font-size: 0.85rem;
     width: 140px
+}
+
+#search-form {
+    padding-left: 10px;
 }
 
 #select2 {
