@@ -1,4 +1,112 @@
+<div class="container-fluid">
+</div>
+<div class="container-fluid mt-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-auto me-auto">
+                <h1 class="text-muted">{{project.project_name}} <span>{{project.project_due}}</span> <span><button type="button" class="btn"
+                            data-bs-toggle="modal" data-bs-target="#projectModal"><i
+                                class="fa-solid fa-pen"></i></button></span>
+                </h1>
+            </div>
+            <div class="col-auto">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Status
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Active</a></li>
+                        <li><a class="dropdown-item" href="#">Deactive</a></li>
+                        <li><a class="dropdown-item" href="#">Finished</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Progressing</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
 
+            <div class="container mt-5 text-muted">
+                <p>{{project.project_budget}} <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#priceModal"><i
+                                class="fa-solid fa-plus"></i></button></span>
+                </p>
+            </div>
+            <div class="container my-5 text-muted">
+                <p>Collaborators <span><button type="button" class="btn" data-bs-toggle="modal"
+                            data-bs-target="#collModal"><i class="fa-solid fa-plus"></i></button></p>
+                <div class="row">
+                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
+                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
+                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
+                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
+                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
+                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
+                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
+                    <div class="col-md-4 my-2 mx-2"><span>xxx@gmail.com</span></div>
+                </div>
+            </div>
+            <div class="container my-5 text-muted">
+                <p>Links <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#linkModal"><i
+                                class="fa-solid fa-plus"></i></button></p>
+                <div class="row">
+                    <div class="col-md-6 mt-2 mb-2">
+                        <span>www.xxxxxxxxxxx.com.au</span>
+                    </div>
+                    <div class="col-md-6 mt-2 mb-2">
+                        <span>www.xxxxxxxxxxx.com.au</span>
+                    </div>
+                    <div class="col-md-6 mt-2 mb-2">
+                        <span>www.xxxxxxxxxxx.com.au</span>
+                    </div>
+                    <div class="col-md-6 mt-2 mb-2">
+                        <span>www.xxxxxxxxxxx.com.au</span>
+                    </div>
+                    <div class="col-md-6 mt-2 mb-2">
+                        <span>www.xxxxxxxxxxx.com.au</span>
+                    </div>
+                    <div class="col-md-6 mt-2 mb-2">
+                        <span>www.xxxxxxxxxxx.com.au</span>
+                    </div>
+                    <div class="col-md-6 mt-2 mb-2">
+                        <span>www.xxxxxxxxxxx.com.au</span>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-5  text-muted">
+                <p>Tags <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#tagModal"><i
+                                class="fa-solid fa-plus"></i></button></p>
+                <div class="row">
+                    {{#each related_tags as |related_tag|}}
+                    <div class="my-1">
+                        <label class="tick">{{tag.tag_name}}
+                            <input type="checkbox" />
+                            <span class="check"></span>
+                        </label>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="container">
+                <div class="container">
+                    <p>Project Summary <span><i class="fa-solid fa-pen"></i></p>
+                    <textarea rows="4" style="width: 100%;">{{project.project_summary}}</textarea>
+                </div>
+                <div class="container">
+                    <p>Description <span><i class="fa-solid fa-pen"></i></p>
+                    <textarea rows="8" style="width: 100%;">{{project.project_description}}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Project Modal -->
 <div class="modal fade" id="priceModal" tabindex="-1" role="dialog" aria-labelledby="priceModalLabel"
@@ -39,7 +147,7 @@
                         <input type="text" class="form-control" id="name" placeholder="example">
                     </div>
                     <div class="col-auto">
-                        <label for="staticEmail2">time</label>
+                        <label for="staticEmail2">Due Date</label>
                         <input type="date" class="form-control" id="price" placeholder="100$">
                     </div>
                 </form>
