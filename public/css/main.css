@@ -15,7 +15,8 @@ body {
 footer {
     color: #f4f4f4;
     background-color: #ff935d;
-    padding: 5px;
+    margin-top: 5%;
+    padding: 3px;
 }
 
 .container {
