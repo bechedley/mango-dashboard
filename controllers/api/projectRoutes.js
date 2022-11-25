@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Project, Collab, ProjectCollab } = require("../../models");
+const { Project, Collab, ProjectCollab, Link, ProjectLink } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 // Route that updates the budget of the specified project
@@ -37,7 +37,7 @@ router.post("/:id/collab", withAuth, async (req, res) => {
   }
 });
 
-
+// Route that deletes a specified collaborator 
 router.delete("/:pid/collab/:cid", withAuth, async (req, res) => {
   try {
     const collabData = await Collab.destroy({
@@ -55,6 +55,21 @@ router.delete("/:pid/collab/:cid", withAuth, async (req, res) => {
     res.status(200).json(collabData);
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+// Route that adds a new link to the specified project
+router.post("/:id/link", withAuth, async (req, res) => {
+  try {
+    const newLink = await Link.create(req.body);
+    const projectLink = await ProjectLink.create({
+      project_id: req.params.id,
+      link_id: newLink.id,
+    });
+
+    res.status(200).json(projectLink);
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
 

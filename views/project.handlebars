@@ -77,7 +77,8 @@
                     {{#each project.project_contributors as |collab|}}
                     <div class="col-md-6 mt-2 mb-2 collab-email">
                         <a href="mailto:{{collab.collab_email}}"><span>{{collab.collab_email}}</span></a>
-                        <button class="btn btn-outline-secondary collab-delete" type="button" data-cid="{{collab.id}}">X</button>
+                        <button class="btn btn-outline-secondary collab-delete" type="button"
+                            data-cid="{{collab.id}}">X</button>
                     </div>
                     {{/each}}
                 </div>
@@ -85,17 +86,17 @@
             <div class="container my-5 text-muted">
                 <p>Links <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#linkModal"><i
                                 class="fa-solid bi-plus" style="font-size: 2rem;"></i></button></p>
-                <div class="row">
-
+                <div class="row link-div" data-pid="{{project.id}}">
                     {{#each project.project_urls as |link|}}
                     <div class="col-md-6 mt-2 mb-2">
                         <a href={{ format_link link.link_url}} target="blank"><span>{{link.link_url}}</span></a>
-                        <button class="btn btn-outline-secondary link-delete" type="button">X</button>
+                        <button class="btn btn-outline-secondary link-delete" type="button"
+                            data-lid="{{link.id}}">X</button>
                     </div>
                     {{/each}}
                 </div>
             </div>
-            <div class="container my-5  text-muted">
+            <div class="container my-5 text-muted">
                 <p>Tags <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#tagModal"><i
                                 class="fa-solid bi-plus" style="font-size: 2rem;"></i></button></p>
                 <div class="row">
@@ -274,7 +275,8 @@
     </div>
 </div>
 <!-- Links Modal -->
-<div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel" aria-hidden="true">
+<form class="form modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel"
+    aria-hidden="true" data-id="{{project.id}}">
     <div class="modal-dialog  modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -290,10 +292,10 @@
             </div>
             <div class="modal-footer form-group">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-orange">Add</button>
+                <button type="submit" class="btn btn-orange">Add</button>
             </div>
         </div>
     </div>
-</div>
+</form>
 
 <script src="/js/project.js"></script>

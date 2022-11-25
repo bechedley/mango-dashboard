@@ -75,6 +75,36 @@ const collabDeleteHandler = async (event) => {
   }
 };
 
+const linkAddHandler = async (event) => {
+  event.preventDefault();
+
+  // Get the id of the project
+  let id;
+  if (event.target.hasAttribute("data-id")) {
+    id = event.target.getAttribute("data-id");
+  }
+
+  // Collect values from the budget modal
+  const link_url = document.querySelector("#new-link").value.trim();
+  if (link_url) {
+    // Send a POST request to the API endpoint
+    const response = await fetch(`/api/project/${id}/link`, {
+      method: "POST",
+      body: JSON.stringify({ link_url }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      // If successful, refresh the project page
+      document.location.replace(`/project/${id}`);
+    } else {
+      alert("Error when adding the new link!");
+    }
+  } else {
+    alert("Invalid link!");
+  }
+};
+
 document
   .querySelector("#priceModal")
   .addEventListener("submit", budgetUpdateHandler);
@@ -87,3 +117,7 @@ const collaborators = document.querySelectorAll(".collab-delete");
 for (let i = 0; i < collaborators.length; i++) {
   collaborators[i].addEventListener("click", collabDeleteHandler);
 }
+
+document
+  .querySelector("#linkModal")
+  .addEventListener("submit", linkAddHandler);
