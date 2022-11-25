@@ -14,6 +14,7 @@ router.get("/", (req, res) => {
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
     const projectData = await Project.findAll({
+      where: { user_id: req.session.user_id },
       include: [{ model: Tag, through: ProjectTag, as: "related_tags" }, { model: Collab, through: ProjectCollab, as: "project_contributors" }, { model: Link, through: ProjectLink, as: "project_urls" }],
       order: [["project_due", "ASC"]],
     });

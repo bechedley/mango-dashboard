@@ -22,6 +22,26 @@ router.delete("/:id", withAuth, async (req, res) => {
   }
 });
 
+// Route that updates the name and due date of the specified project
+router.put("/:id/name", withAuth, async (req, res) => {
+  try {
+    const projectData = await Project.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!projectData) {
+      res.status(404).json({ message: "Error when trying to update the name and due date!" });
+      return;
+    }
+
+    res.status(200).json(projectData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Route that updates the budget of the specified project
 router.put("/:id/budget", withAuth, async (req, res) => {
   try {
@@ -35,6 +55,41 @@ router.put("/:id/budget", withAuth, async (req, res) => {
       res.status(404).json({ message: "Error when trying to update the budget!" });
       return;
     }
+
+    res.status(200).json(projectData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Route that updates the summary of the specified project
+router.put("/:id/summary", withAuth, async (req, res) => {
+  try {
+    const projectData = await Project.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!projectData) {
+      res.status(404).json({ message: "Error when trying to update the summary!" });
+      return;
+    }
+
+    res.status(200).json(projectData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Route that updates the description of the specified project
+router.put("/:id/description", withAuth, async (req, res) => {
+  try {
+    const projectData = await Project.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
 
     res.status(200).json(projectData);
   } catch (err) {
@@ -166,6 +221,20 @@ router.put("/:id/status", withAuth, async (req, res) => {
     res.status(200).json(projectData);
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+// Route that adds a new project
+router.post('/', withAuth, async (req, res) => {
+  try {
+    const newProject = await Project.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
+
+    res.status(200).json(newProject);
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
 
