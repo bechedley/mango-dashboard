@@ -122,6 +122,36 @@ const linkDeleteHandler = async (event) => {
   }
 };
 
+const tagAddHandler = async (event) => {
+  event.preventDefault();
+
+  // Get the id of the project
+  let id;
+  if (event.target.hasAttribute("data-id")) {
+    id = event.target.getAttribute("data-id");
+  }
+
+  // Collect values from the budget modal
+  const tag_name = document.querySelector("#new-tag").value.trim();
+  if (tag_name) {
+    // Send a POST request to the API endpoint
+    const response = await fetch(`/api/project/${id}/tag`, {
+      method: "POST",
+      body: JSON.stringify({ tag_name }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      // If successful, refresh the project page
+      document.location.replace(`/project/${id}`);
+    } else {
+      alert("Error when adding the new tag!");
+    }
+  } else {
+    alert("Error when adding the new tag!");
+  }
+};
+
 document
   .querySelector("#priceModal")
   .addEventListener("submit", budgetUpdateHandler);
@@ -135,11 +165,11 @@ for (let i = 0; i < collaborators.length; i++) {
   collaborators[i].addEventListener("click", collabDeleteHandler);
 }
 
-document
-  .querySelector("#linkModal")
-  .addEventListener("submit", linkAddHandler);
+document.querySelector("#linkModal").addEventListener("submit", linkAddHandler);
 
 const links = document.querySelectorAll(".link-delete");
 for (let i = 0; i < links.length; i++) {
   links[i].addEventListener("click", linkDeleteHandler);
 }
+
+document.querySelector("#tagModal").addEventListener("submit", tagAddHandler);

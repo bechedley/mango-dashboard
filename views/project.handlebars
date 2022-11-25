@@ -207,27 +207,28 @@
     </div>
 </form>
 <!-- Tags Modal -->
-<div class="modal fade" id="tagModal" tabindex="-1" role="dialog" aria-labelledby="tagModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered" role="document">
+<form class="form modal fade" id="tagModal" tabindex="-1" role="dialog" aria-labelledby="tagModalLabel" aria-hidden="true"
+    data-id="{{project.id}}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="tagModalLabel">Project Tags</h5>
             </div>
             <div class="modal-body">
                 <form class="row g-3">
-                    <div class="col-auto">
+                    <div class="col-auto form-group">
                         <label for="staticEmail2">Add Tag</label>
                         <input type="text" class="form-control" id="new-tag" placeholder="urgent">
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer form-group">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-orange">Add</button>
+                <button type="submit" class="btn btn-orange">Add</button>
             </div>
         </div>
     </div>
-</div>
+</form>
 <!-- Summary Modal -->
 <div class="modal fade" id="summaryModal" tabindex="-1" role="dialog" aria-labelledby="summaryModalLabel"
     aria-hidden="true">
@@ -284,7 +285,7 @@
             </div>
             <div class="modal-body">
                 <form class="row g-3">
-                    <div class="col-auto">
+                    <div class="col-auto form-group">
                         <label for="staticEmail2">Add Link</label>
                         <input type="text" class="form-control" id="new-link" placeholder="www.yourlink.com">
                     </div>

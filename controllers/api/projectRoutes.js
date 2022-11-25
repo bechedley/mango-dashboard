@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Project, Collab, ProjectCollab, Link, ProjectLink } = require("../../models");
+const { Project, Collab, ProjectCollab, Link, ProjectLink, Tag, ProjectTag } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 // Route that updates the budget of the specified project
@@ -89,6 +89,21 @@ router.delete("/:pid/link/:lid", withAuth, async (req, res) => {
     res.status(200).json(linkData);
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+// Route that adds a new tag to the specified project
+router.post("/:id/tag", withAuth, async (req, res) => {
+  try {
+    const newTag = await Tag.create(req.body);
+    const projectTag = await ProjectTag.create({
+      project_id: req.params.id,
+      tag_id: newTag.id,
+    });
+
+    res.status(200).json(projectTag);
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
 
