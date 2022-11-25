@@ -132,28 +132,28 @@
 </div>
 
 <!-- Budget Modal -->
-<div class="modal fade" id="priceModal" tabindex="-1" role="dialog" aria-labelledby="priceModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered" role="document">
+<form class="form modal fade" id="priceModal" tabindex="-1" role="dialog" aria-labelledby="priceModalLabel"
+    aria-hidden="true" data-id="{{project.id}}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="priceModalLabel">Project Budget</h5>
             </div>
             <div class="modal-body">
                 <form class="row g-3">
-                    <div class="col-auto">
+                    <div class="col-auto form-group">
                         <label for="staticEmail2">Budget</label>
-                        <input type="text" class="form-control-plaintext" id="new-budget" placeholder="${{project.project_budget}}">
+                        <input type="text" class="form-control-plaintext" id="new-budget" placeholder="{{project.project_budget}}">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-orange">Save changes</button>
+                <button type="submit" class="btn btn-orange">Save changes</button>
             </div>
         </div>
     </div>
-</div>
+</form>
 
 <!-- Project Modal -->
 <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel"
@@ -286,10 +286,12 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer form-group">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-orange">Add</button>
             </div>
         </div>
     </div>
 </div>
+
+<script src="/js/project.js"></script>
