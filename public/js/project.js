@@ -14,6 +14,37 @@ const projectDeleteHandler = async (event) => {
   }
 };
 
+const nameUpdateHandler = async (event) => {
+  event.preventDefault();
+
+  // Get the id of the project
+  let id;
+  if (event.target.hasAttribute("data-id")) {
+    id = event.target.getAttribute("data-id");
+  }
+
+  // Collect values from the name and date modal
+  const project_name = document.querySelector("#new-name").value.trim();
+  const project_due = document.querySelector("#new-due").value.trim();
+  if (project_name !== null) {
+    // Send a PUT request to the API endpoint
+    const response = await fetch(`/api/project/${id}/name`, {
+      method: "PUT",
+      body: JSON.stringify({ project_name, project_due }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      // If successful, refresh the project page
+      document.location.replace(`/project/${id}`);
+    } else {
+      alert("Error when updating the name and due date!");
+    }
+  } else {
+    alert("You must include a project name!");
+  }
+};
+
 const budgetUpdateHandler = async (event) => {
   event.preventDefault();
 
@@ -42,6 +73,62 @@ const budgetUpdateHandler = async (event) => {
   } else {
     alert("Invalid budget! Please type in a number!");
   }
+};
+
+const summaryUpdateHandler = async (event) => {
+  event.preventDefault();
+
+  // Get the id of the project
+  let id;
+  if (event.target.hasAttribute("data-id")) {
+    id = event.target.getAttribute("data-id");
+  }
+
+  // Collect values from the summary modal
+  const project_summary = document.querySelector("#new-summary").value.trim();
+  if (project_summary !== null) {
+    // Send a PUT request to the API endpoint
+    const response = await fetch(`/api/project/${id}/summary`, {
+      method: "PUT",
+      body: JSON.stringify({ project_summary }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      // If successful, refresh the project page
+      document.location.replace(`/project/${id}`);
+    } else {
+      alert("Error when updating the summary!");
+    }
+  } else {
+    alert("Invalid Summary! Projects must include a summary!");
+  }
+};
+
+const descriptionUpdateHandler = async (event) => {
+  event.preventDefault();
+
+  // Get the id of the project
+  let id;
+  if (event.target.hasAttribute("data-id")) {
+    id = event.target.getAttribute("data-id");
+  }
+
+  // Collect values from the description modal
+  const project_description = document.querySelector("#new-description").value.trim();
+    // Send a PUT request to the API endpoint
+    const response = await fetch(`/api/project/${id}/description`, {
+      method: "PUT",
+      body: JSON.stringify({ project_description }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      // If successful, refresh the project page
+      document.location.replace(`/project/${id}`);
+    } else {
+      alert("Error when updating the description!");
+    }
 };
 
 const collabAddHandler = async (event) => {
@@ -216,9 +303,21 @@ document
   .querySelector("#projectDeleteModal")
   .addEventListener("submit", projectDeleteHandler);
 
+  document
+  .querySelector("#projectModal")
+  .addEventListener("submit", nameUpdateHandler);
+
 document
   .querySelector("#priceModal")
   .addEventListener("submit", budgetUpdateHandler);
+
+  document
+  .querySelector("#summaryModal")
+  .addEventListener("submit", summaryUpdateHandler);
+
+  document
+  .querySelector("#descriptionModal")
+  .addEventListener("submit", descriptionUpdateHandler);
 
 document
   .querySelector("#collModal")

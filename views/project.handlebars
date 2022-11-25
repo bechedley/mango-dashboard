@@ -56,7 +56,7 @@
                         <li><a class="dropdown-item status-item" href="#" name="cancelled">Cancelled</a></li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#projectDeleteModal">Delete</button>
+                <button type="button" class="btn btn-danger delete-project-btn" data-bs-toggle="modal" data-bs-target="#projectDeleteModal">Delete</button>
             </div>
         </div>
     </div>
@@ -170,8 +170,8 @@
 </form>
 
 <!-- Project Modal -->
-<div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel"
-    aria-hidden="true">
+<form class="form modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel"
+    aria-hidden="true" data-id="{{project.id}}">
     <div class="modal-dialog  modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -181,22 +181,22 @@
                 <form class="row g-3">
                     <div class="col-auto">
                         <label for="staticEmail2">Name</label>
-                        <input type="text-area" class="form-control" rows="1" id="new-name"
+                        <input type="text-area" class="form-control-plaintext" rows="1" id="new-name"
                             placeholder={{project.project_name}}>
                     </div>
                     <div class="col-auto">
                         <label for="staticEmail2">Due Date</label>
-                        <input type="date" class="form-control" id="new-due">
+                        <input type="date" class="form-control-plaintext" id="new-due">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-orange">Save changes</button>
+                <button type="submit" class="btn btn-orange">Save changes</button>
             </div>
         </div>
     </div>
-</div>
+</form>
 
 <!-- Collabrators Modal -->
 <form class="form modal fade" id="collModal" tabindex="-1" role="dialog" aria-labelledby="collModalLabel"
@@ -245,8 +245,8 @@
     </div>
 </form>
 <!-- Summary Modal -->
-<div class="modal fade" id="summaryModal" tabindex="-1" role="dialog" aria-labelledby="summaryModalLabel"
-    aria-hidden="true">
+<form class="form modal fade" id="summaryModal" tabindex="-1" role="dialog" aria-labelledby="summaryModalLabel"
+    aria-hidden="true" data-id="{{project.id}}">
     <div class="modal-dialog  modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -262,14 +262,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-orange">Save changes</button>
+                <button type="submit" class="btn btn-orange">Save changes</button>
             </div>
         </div>
     </div>
-</div>
+</form>
 <!-- Description Modal -->
-<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel"
-    aria-hidden="true">
+<form class="form modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel"
+    aria-hidden="true" data-id="{{project.id}}">
     <div class="modal-dialog  modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -285,11 +285,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-orange">Save changes</button>
+                <button type="submit" class="btn btn-orange">Save changes</button>
             </div>
         </div>
     </div>
-</div>
+</form>
 <!-- Links Modal -->
 <form class="form modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel"
     aria-hidden="true" data-id="{{project.id}}">
