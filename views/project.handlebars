@@ -4,17 +4,48 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-auto me-auto">
-                <h1 class="text-muted">{{project.project_name}} <span>{{project.project_due}}</span> <span><button
-                            type="button" class="btn" data-bs-toggle="modal" data-bs-target="#projectModal"><i
-                                class="fa-solid fa-pen"></i></button></span>
+                <h1 class="text-muted">{{project.project_name}} <span class="project-due-date"> Due: {{ format_date
+                        project.project_due}}</span> <span><button type="button" class="btn" data-bs-toggle="modal"
+                            data-bs-target="#projectModal"><i class="fa-solid bi-pen"></i></button></span>
                 </h1>
             </div>
             <div class="col-auto">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        {{project.project_status}}
+                    {{#if (if_active project.project_status) }}
+                    <button type="button" class="status-button btn active-status-button dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ format_uppercase project.project_status}}
                     </button>
+                    {{/if}}
+
+                    {{#if (if_pending project.project_status) }}
+                    <button type="button" class="status-button btn pending-status-button dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ format_uppercase project.project_status}}
+                    </button>
+                    {{/if}}
+
+                    {{#if (if_upcoming project.project_status) }}
+                    <button type="button" class="status-button btn upcoming-status-button dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ format_uppercase project.project_status}}
+                    </button>
+                    {{/if}}
+
+                    {{#if (if_cancelled project.project_status) }}
+                    <button type="button" class="status-button btn cancelled-status-button dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ format_uppercase project.project_status}}
+                    </button>
+                    {{/if}}
+
+                    {{#if (if_finished project.project_status) }}
+                    <button type="button" class="status-button btn finished-status-button dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ format_uppercase project.project_status}}
+                    </button>
+                    {{/if}}
+
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Active</a></li>
                         <li><a class="dropdown-item" href="#">Deactive</a></li>
@@ -33,17 +64,20 @@
         <div class="col-6">
 
             <div class="container mt-5 text-muted">
-                <p>{{project.project_budget}} <span><button type="button" class="btn" data-bs-toggle="modal"
-                            data-bs-target="#priceModal"><i class="fa-solid fa-plus"></i></button></span>
+                <p class="budget-text">Budget: {{ format_amount project.project_budget}} <span><button type="button"
+                            class="btn" data-bs-toggle="modal" data-bs-target="#priceModal"><i
+                                class="fa-solid bi-pen"></i></button></span>
                 </p>
             </div>
             <div class="container my-5 text-muted">
                 <p>Collaborators <span><button type="button" class="btn" data-bs-toggle="modal"
-                            data-bs-target="#collModal"><i class="fa-solid fa-plus"></i></button></p>
+                            data-bs-target="#collModal"><i class="fa-solid bi-plus"
+                                style="font-size: 2rem;"></i></button></p>
                 <div class="row">
                     {{#each project.project_contributors as |collab|}}
-                    <div class="col-md-6 mt-2 mb-2">
-                        <a href={{collab.collab_email}}><span>{{collab.collab_email}}</span></a>
+                    <div class="col-md-6 mt-2 mb-2 collab-email">
+                        <a href="mailto:{{collab.collab_email}}"><span>{{collab.collab_email}}</span></a>
+                        <button class="btn btn-outline-secondary collab-delete" type="button" id="collab-button-delete">X</button>
                     </div>
                     {{/each}}
 
@@ -51,25 +85,26 @@
             </div>
             <div class="container my-5 text-muted">
                 <p>Links <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#linkModal"><i
-                                class="fa-solid fa-plus"></i></button></p>
+                                class="fa-solid bi-plus" style="font-size: 2rem;"></i></button></p>
                 <div class="row">
 
-                  {{#each project.project_urls as |link|}}
+                    {{#each project.project_urls as |link|}}
                     <div class="col-md-6 mt-2 mb-2">
-                        <a href={{link.link_url}}><span>{{link.link_url}}</span></a>
+                        <a href={{ format_link link.link_url}} target="blank"><span>{{link.link_url}}</span></a>
+                        <button class="btn btn-outline-secondary link-delete" type="button" id="link-button-delete">X</button>
                     </div>
                     {{/each}}
                 </div>
             </div>
             <div class="container my-5  text-muted">
                 <p>Tags <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#tagModal"><i
-                                class="fa-solid fa-plus"></i></button></p>
+                                class="fa-solid bi-plus" style="font-size: 2rem;"></i></button></p>
                 <div class="row">
                     {{#each project.related_tags as |tag|}}
                     <div class="col">
-                        <button type="button" class="btn btn-outline-dark tag-delete"><span><i
-                                    class="fa-solid fa-xmark"></i>
-                                {{tag_name}}</span></button>
+                        <button type="button" class="btn btn-outline-dark" id="tag-delete"><span><i
+                                    class="fa-solid bi-xmark"></i>
+                                {{tag_name}} X </span></button>
                     </div>
                     {{/each}}
                 </div>
@@ -78,19 +113,25 @@
         <div class="col-6">
             <div class="container">
                 <div class="container">
-                    <p>Project Summary <span><i class="fa-solid fa-pen"></i></p>
-                    <textarea rows="4" style="width: 100%;">{{project.project_summary}}</textarea>
+                    <p>Project Summary <span><button type="button"
+                            class="btn" data-bs-toggle="modal" data-bs-target="#summaryModal"><i
+                                class="fa-solid bi-pen"></i></button></span></p>
+                    <textarea class="project-text-summary bg-light" rows="3"
+                        style="width: 100%;">{{project.project_summary}}</textarea>
                 </div>
                 <div class="container">
-                    <p>Description <span><i class="fa-solid fa-pen"></i></p>
-                    <textarea rows="8" style="width: 100%;">{{project.project_description}}</textarea>
+                    <p>Description <span><button type="button"
+                            class="btn" data-bs-toggle="modal" data-bs-target="#descriptionModal"><i
+                                class="fa-solid bi-pen"></i></button></span></p>
+                    <textarea class="project-text-summary bg-light" rows="8"
+                        style="width: 100%;">{{project.project_description}}</textarea>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Project Modal -->
+<!-- Budget Modal -->
 <div class="modal fade" id="priceModal" tabindex="-1" role="dialog" aria-labelledby="priceModalLabel"
     aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered" role="document">
@@ -102,19 +143,19 @@
                 <form class="row g-3">
                     <div class="col-auto">
                         <label for="staticEmail2">Budget</label>
-                        <input type="text" class="form-control-plaintext" id="price" placeholder="100$">
+                        <input type="text" class="form-control-plaintext" id="new-budget" placeholder="${{project.project_budget}}">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-orange">Save changes</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Price Modal -->
+<!-- Project Modal -->
 <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel"
     aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered" role="document">
@@ -126,17 +167,17 @@
                 <form class="row g-3">
                     <div class="col-auto">
                         <label for="staticEmail2">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="example">
+                        <input type="text-area" class="form-control" rows="1" id="new-name" placeholder={{project.project_name}}>
                     </div>
                     <div class="col-auto">
                         <label for="staticEmail2">Due Date</label>
-                        <input type="date" class="form-control" id="price" placeholder="100$">
+                        <input type="date" class="form-control" id="new-due">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-orange">Save changes</button>
             </div>
         </div>
     </div>
@@ -152,14 +193,14 @@
             <div class="modal-body">
                 <form class="row g-3">
                     <div class="col-auto">
-                        <label for="staticEmail2">email:</label>
-                        <input type="email" class="form-control" id="name" placeholder="example">
+                        <label for="staticEmail2">Add Email:</label>
+                        <input type="email" class="form-control" id="new-collab" placeholder="example@email.com">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-orange">Add</button>
             </div>
         </div>
     </div>
@@ -174,14 +215,14 @@
             <div class="modal-body">
                 <form class="row g-3">
                     <div class="col-auto">
-                        <label for="staticEmail2">Tag</label>
-                        <input type="text" class="form-control" id="name" placeholder="example">
+                        <label for="staticEmail2">Add Tag</label>
+                        <input type="text" class="form-control" id="new-tag" placeholder="urgent">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-orange">Add</button>
             </div>
         </div>
     </div>
@@ -197,14 +238,13 @@
             <div class="modal-body">
                 <form class="row g-3">
                     <div class="col-auto">
-                        <label for="staticEmail2">Name</label>
-                        <input type="textarea" class="form-control" id="name" placeholder="example">
+                        <input type="textarea" class="form-control" rows="2" id="new-summary" placeholder={{project.project_summary}}>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-orange">Save changes</button>
             </div>
         </div>
     </div>
@@ -220,14 +260,13 @@
             <div class="modal-body">
                 <form class="row g-3">
                     <div class="col-auto">
-                        <label for="staticEmail2">Description</label>
-                        <input type="textarea" class="form-control" id="name" placeholder="example">
+                        <input type="textarea" class="form-control" rows="4" id="new-description" placeholder={{project.project_description}}>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-orange">Save changes</button>
             </div>
         </div>
     </div>
@@ -242,14 +281,14 @@
             <div class="modal-body">
                 <form class="row g-3">
                     <div class="col-auto">
-                        <label for="staticEmail2">Link</label>
-                        <input type="text" class="form-control" id="name" placeholder="example">
+                        <label for="staticEmail2">Add Link</label>
+                        <input type="text" class="form-control" id="new-link" placeholder="www.yourlink.com">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-orange">Add</button>
             </div>
         </div>
     </div>

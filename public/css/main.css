@@ -4,7 +4,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -18,19 +18,67 @@ footer {
     padding: 5px;
 }
 
+h1 {
+    font-size: 54px;
+}
+
+.navbar {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.budget-text {
+    font-size: 32px;
+}
+
+button.active-status-button {
+    background-color: #ffa500;
+    color: #fff;
+    border: none;
+}
+
+button.pending-status-button {
+    background-color: #e0009dce;
+    color: #fff;
+    border: none;
+}
+
+button.upcoming-status-button {
+    background-color: #026bc2;
+    color: #fff;
+    border: none;
+}
+
+button.cancelled-status-button {
+    background-color: #e00000ce;
+    color: #fff;
+    border: none;
+}
+
+button.finished-status-button {
+    background-color: #00811c;
+    color: #fff;
+    border: none;
+}
+
 .container {
-    margin: 40px auto
+    margin: 40px auto;
+}
+
+.modal-header {
+    background-color: #ff935d;
+    color: #fff;
 }
 
 #header {
     width: 100%;
     height: 60px;
-    box-shadow: 5px 5px 15px #e8e8e8
+    box-shadow: 5px 5px 15px #e8e8e8;
 }
 
 .col-lg-4,
 .col-md-6 {
-    padding-right: 0
+    padding-right: 0;
 }
 
 button.btn.btn-hide {
@@ -41,7 +89,7 @@ button.btn.btn-hide {
     padding-left: 40px;
     padding-right: 40px;
     border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px
+    border-bottom-right-radius: 0px;
 }
 
 button.btn.btn-add {
@@ -52,7 +100,7 @@ button.btn.btn-add {
     padding-left: 40px;
     padding-right: 40px;
     border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px
+    border-bottom-left-radius: 0px;
 }
 
 button.btn-outline {
@@ -66,50 +114,65 @@ button.btn-outline:focus {
 }
 
 .btn:focus {
-    box-shadow: none
+    box-shadow: none;
 }
 
 .box-label .btn {
     background-color: #fff;
     padding: 0;
-    font-size: 0.8rem
+    font-size: 0.8rem;
 }
 
 .btn-red {
-    background-color: #e00000ce
+    background-color: #e00000ce;
 }
 
 .btn-orange {
-    background-color: #ffa500
+    background-color: #ff935d;
+    color: #fff;
 }
 
 .btn-pink {
-    background-color: #e0009dce
+    background-color: #e0009dce;
 }
 
 .btn-green {
-    background-color: #00811c
+    background-color: #00811c;
 }
 
 .btn-blue {
-    background-color: #026bc2
+    background-color: #026bc2;
 }
 
 .btn-brown {
-    background-color: #994a00
+    background-color: #994a00;
 }
 
+.project-div {
+    margin-bottom: 10px;
+}
+
+.project-due-date {
+    padding-left: 10px;
+    font-size: 20px;
+
+}
+
+.project-text-summary {
+    border: none;
+    padding: 20px;
+}
 
 .pagination .page-item .page-link {
     color: #333;
     border: none;
     width: 40px;
-    text-align: center
+    text-align: center;
 }
 
 .pagination .page-item.active .page-link {
     background-color: #fff;
-    border: 1px solid #333
+    border: 1px solid #333;
 }
 
 select {
@@ -118,7 +181,7 @@ select {
     margin: 2px 2px;
     color: #999;
     font-size: 0.85rem;
-    width: 140px
+    width: 140px;
 }
 
 #search-form {
@@ -127,7 +190,7 @@ select {
 
 #select2 {
     border: 1px solid #777;
-    color: #999
+    color: #999;
 }
 
 #pro {
@@ -135,7 +198,7 @@ select {
     color: #333;
     font-weight: 700;
     padding-left: 0px;
-    width: initial
+    width: initial;
 }
 
 #filterbar {
@@ -143,38 +206,38 @@ select {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 15px;
-    float: left
+    float: left;
 }
 
 #filterbar input[type="radio"] {
-    visibility: hidden
+    visibility: hidden;
 }
 
 #filterbar input[type='radio']:checked {
     background-color: #16c79a;
-    border: none
+    border: none;
 }
 
 #filterbar .btn.btn-success {
     background-color: #ddd;
     color: #333;
     border: none;
-    width: 115px
+    width: 115px;
 }
 
 #filterbar .btn.btn-success:hover {
     background-color: #aff1e1;
-    color: #444
+    color: #444;
 }
 
 #filterbar .btn-success:not(:disabled):not(.disabled).active,
 #filterbar .btn-success:not(:disabled):not(.disabled):active {
     background-color: #16c79a;
-    color: #fff
+    color: #fff;
 }
 
 label {
-    cursor: pointer
+    cursor: pointer;
 }
 
 .tick {
@@ -183,7 +246,7 @@ label {
     padding-left: 23px;
     cursor: pointer;
     font-size: 0.9rem;
-    margin: 0
+    margin: 0;
 }
 
 .tick input {
@@ -191,7 +254,7 @@ label {
     opacity: 0;
     cursor: pointer;
     height: 0;
-    width: 0
+    width: 0;
 }
 
 .check {
@@ -202,26 +265,26 @@ label {
     width: 18px;
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 3px
+    border-radius: 3px;
 }
 
 .tick:hover input~.check {
-    background-color: #f3f3f3
+    background-color: #f3f3f3;
 }
 
 .tick input:checked~.check {
-    background-color: #ffffff
+    background-color: #ffffff;
 }
 
 .check:after {
     content: "";
     position: absolute;
-    display: none
+    display: none;
 }
 
 .tick input:checked~.check:after {
     display: block;
-    transform: rotate(45deg) scale(1)
+    transform: rotate(45deg) scale(1);
 }
 
 .tick .check:after {
@@ -231,57 +294,69 @@ label {
     height: 10px;
     border: solid rgb(0, 0, 0);
     border-width: 0 3px 3px 0;
-    transform: rotate(45deg) scale(2)
+    transform: rotate(45deg) scale(2);
 }
 
 .box {
-    padding: 10px
+    padding: 10px;
 }
 
 .box-label {
     color: #11698e;
     font-size: 0.9rem;
-    font-weight: 800
+    font-weight: 800;
+}
+
+#collab-button-delete {
+    padding: 1px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#link-button-delete {
+    padding: 1px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 #inner-box,
 #inner-box2 {
-    height: 150px;
-    overflow-y: scroll
+    height: 200px;
+    overflow-y: scroll;
 }
 
 #inner-box2 {
-    height: 132px
+    height: 132px;
 }
 
 #inner-box::-webkit-scrollbar,
 #inner-box2::-webkit-scrollbar {
-    width: 6px
+    width: 6px;
 }
 
 #inner-box::-webkit-scrollbar-track,
 #inner-box2::-webkit-scrollbar-track {
     background-color: #ddd;
-    border-radius: 2px
+    border-radius: 2px;
 }
 
 #inner-box::-webkit-scrollbar-thumb,
 #inner-box2::-webkit-scrollbar-thumb {
     background-color: #333;
-    border-radius: 2px
+    border-radius: 2px;
 }
 
 #price {
-    height: 45px
+    height: 45px;
 }
 
 #size input[type="checkbox"] {
-    visibility: hidden
+    visibility: hidden;
 }
 
 #size input[type='checkbox']:checked {
     background-color: #16c79a;
-    border: none
+    border: none;
 }
 
 #size .btn.btn-success {
@@ -290,23 +365,23 @@ label {
     border: none;
     width: 40px;
     font-size: 0.8rem;
-    border-radius: 0
+    border-radius: 0;
 }
 
 #size .btn.btn-success:hover {
     background-color: #aff1e1;
-    color: #444
+    color: #444;
 }
 
 #size .btn-success:not(:disabled):not(.disabled).active,
 #size .btn-success:not(:disabled):not(.disabled):active {
     background-color: #16c79a;
-    color: #fff
+    color: #fff;
 }
 
 #size label {
     margin: 10px;
-    margin-left: 0px
+    margin-left: 0px;
 }
 
 .card {
@@ -317,19 +392,19 @@ label {
 
 .card:hover {
     box-shadow: 2px 2px 15px #fd9a6ce5;
-    transform: scale(1.02)
+    transform: scale(1.02);
 }
 
 .card .project-name {
-    font-weight: 600
+    font-weight: 600;
 }
 
 .card-body {
-    padding-bottom: 0
+    padding-bottom: 0;
 }
 
 .card .text-muted {
-    font-size: 0.82rem
+    font-size: 0.82rem;
 }
 
 .card-img img {
@@ -337,7 +412,7 @@ label {
     width: inherit;
     height: 180px;
     object-fit: contain;
-    display: block
+    display: block;
 }
 
 .card-body .btn-group .btn {
@@ -346,17 +421,17 @@ label {
     height: 20px;
     margin-right: 5px;
     border-radius: 50%;
-    position: relative
+    position: relative;
 }
 
 .card-body .btn-group>.btn-group:not(:last-child)>.btn,
 .card-body .btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
     border-radius: 50%;
-    transition: ease-in all .4s
+    transition: ease-in all .4s;
 }
 
 .card-body input[type="radio"] {
-    visibility: hidden
+    visibility: hidden;
 }
 
 .card-body .btn:not(:disabled):not(.disabled).active::after,
@@ -369,7 +444,7 @@ label {
     left: 4.2px;
     background-color: #fff;
     position: absolute;
-    transition: ease-in all .4s
+    transition: ease-in all .4s;
 }
 
 .card-body .btn.btn-light:not(:disabled):not(.disabled).active::after,
@@ -378,12 +453,12 @@ label {
 }
 
 #tag-list input[type="checkbox"] {
-    visibility: hidden
+    visibility: hidden;
 }
 
 #tag-list input[type='checkbox']:checked {
     background-color: #16c79a;
-    border: none
+    border: none;
 }
 
 #tag-list .btn.btn-success {
@@ -393,40 +468,40 @@ label {
     width: 20px;
     font-size: 0.7rem;
     border-radius: 0;
-    padding: 0
+    padding: 0;
 }
 
 #tag-list .btn.btn-success:hover {
     background-color: #aff1e1;
-    color: #444
+    color: #444;
 }
 
 #tag-list .btn-success:not(:disabled):not(.disabled).active,
 #tag-list .btn-success:not(:disabled):not(.disabled):active {
     background-color: #16c79a;
-    color: #fff
+    color: #fff;
 }
 
 #tag-list label {
     margin: 10px;
-    margin-left: 0px
+    margin-left: 0px;
 }
 
 #shirt {
-    height: 170px
+    height: 170px;
 }
 
 .middle {
     position: relative;
     width: 100%;
-    margin-top: 25px
+    margin-top: 25px;
 }
 
 .slider {
     position: relative;
     z-index: 1;
     height: 5px;
-    margin: 0 15px
+    margin: 0 15px;
 }
 
 .slider>.track {
@@ -437,7 +512,7 @@ label {
     top: 0;
     bottom: 0;
     border-radius: 5px;
-    background-color: #ddd
+    background-color: #ddd;
 }
 
 .slider>.range {
@@ -448,7 +523,7 @@ label {
     top: 0;
     bottom: 0;
     border-radius: 5px;
-    background-color: #36a31b
+    background-color: #36a31b;
 }
 
 .slider>.thumb {
@@ -460,7 +535,7 @@ label {
     background-color: #36a31b;
     border-radius: 50%;
     box-shadow: 0 0 0 0 rgba(63, 204, 75, 0.705);
-    transition: box-shadow .3s ease-in-out
+    transition: box-shadow .3s ease-in-out;
 }
 
 .slider>.thumb::after {
@@ -471,25 +546,25 @@ label {
     top: 30%;
     border-radius: 50%;
     content: '';
-    background-color: #fff
+    background-color: #fff;
 }
 
 .slider>.thumb.left {
     left: 25%;
-    transform: translate(-15px, -10px)
+    transform: translate(-15px, -10px);
 }
 
 .slider>.thumb.right {
     right: 25%;
-    transform: translate(15px, -10px)
+    transform: translate(15px, -10px);
 }
 
 .slider>.thumb.hover {
-    box-shadow: 0 0 0 10px rgba(125, 230, 134, 0.507)
+    box-shadow: 0 0 0 10px rgba(125, 230, 134, 0.507);
 }
 
 .slider>.thumb.active {
-    box-shadow: 0 0 0 10px rgba(63, 204, 75, 0.623)
+    box-shadow: 0 0 0 10px rgba(63, 204, 75, 0.623);
 }
 
 input[type=range] {
@@ -499,7 +574,7 @@ input[type=range] {
     z-index: 2;
     height: 10px;
     width: 100%;
-    opacity: 0
+    opacity: 0;
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -509,35 +584,35 @@ input[type=range]::-webkit-slider-thumb {
     border-radius: 0;
     border: 0 none;
     background-color: red;
-    -webkit-appearance: none
+    -webkit-appearance: none;
 }
 
 .del {
     text-decoration: line-through;
-    color: red
+    color: red;
 }
 
 @media(min-width:1199.6px) {
     #filterbar {
-        width: 25%
+        width: 25%;
     }
 }
 
 @media(max-width:1199.5px) {
     #filterbar {
-        width: 28%
+        width: 28%;
     }
 
     .card {
-        height: 350px
+        height: 350px;
     }
 
     .price {
-        font-size: 0.9rem
+        font-size: 0.9rem;
     }
 
     .project-name {
-        font-size: 0.8rem
+        font-size: 0.8rem;
     }
 }
 
@@ -551,11 +626,11 @@ input[type=range]::-webkit-slider-thumb {
         display: block;
         background-image: none;
         z-index: 2;
-        background-color: #1d1c1cb2
+        background-color: #1d1c1cb2;
     }
 
     #filterbar {
-        width: 36%
+        width: 36%;
     }
 
     #sort {
@@ -563,33 +638,33 @@ input[type=range]::-webkit-slider-thumb {
         color: #fff;
         margin: 0;
         margin-bottom: 20px;
-        width: 100%
+        width: 100%;
     }
 
     #sort option,
     #pro option {
-        color: #000
+        color: #000;
     }
 
     #pro,
     #select2,
     .result {
         background-color: inherit;
-        color: #fff
+        color: #fff;
     }
 
     .card {
-        height: 345px
+        height: 345px;
     }
 
     .price {
-        font-size: 0.85rem
+        font-size: 0.85rem;
     }
 }
 
 @media(max-width: 767.5px) {
     #filterbar {
-        width: 50%
+        width: 50%;
     }
 }
 
@@ -598,22 +673,22 @@ input[type=range]::-webkit-slider-thumb {
         float: none;
         width: 100%;
         margin-bottom: 20px;
-        border-radius: 5px
+        border-radius: 5px;
     }
 
     #content.my-5 {
         margin-top: 20px !important;
-        margin-bottom: 20px !important
+        margin-bottom: 20px !important;
     }
 
     .col-lg-4,
     .col-md-6 {
-        padding-left: 0
+        padding-left: 0;
     }
 }
 
 @media(max-width: 500.5px) {
     .pagination {
-        display: none
+        display: none;
     }
 }
