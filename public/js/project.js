@@ -1,3 +1,19 @@
+const projectDeleteHandler = async (event) => {
+  if (event.target.hasAttribute("data-id")) {
+    const id = event.target.getAttribute("data-id");
+
+    const response = await fetch(`/api/project/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      document.location.replace(`/dashboard`);
+    } else {
+      alert("Failed to delete project!");
+    }
+  }
+};
+
 const budgetUpdateHandler = async (event) => {
   event.preventDefault();
 
@@ -168,6 +184,10 @@ const tagDeleteHandler = async (event) => {
     }
   }
 };
+
+document
+  .querySelector("#projectDeleteModal")
+  .addEventListener("submit", projectDeleteHandler);
 
 document
   .querySelector("#priceModal")

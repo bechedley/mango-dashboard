@@ -2,6 +2,26 @@ const router = require("express").Router();
 const { Project, Collab, ProjectCollab, Link, ProjectLink, Tag, ProjectTag } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+// Route that deletes a specified project
+router.delete("/:id", withAuth, async (req, res) => {
+  try {
+    const projectData = await Project.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!projectData) {
+      res.status(404).json({ message: "No project found with this id!" });
+      return;
+    }
+
+    res.status(200).json(projectData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Route that updates the budget of the specified project
 router.put("/:id/budget", withAuth, async (req, res) => {
   try {
