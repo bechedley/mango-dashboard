@@ -45,7 +45,6 @@ router.delete("/:pid/collab/:cid", withAuth, async (req, res) => {
         id: req.params.cid,
       },
     });
-    console.log(collabData);
 
     if (!collabData) {
       res.status(404).json({ message: "No collaborator found with this id!" });
@@ -70,6 +69,26 @@ router.post("/:id/link", withAuth, async (req, res) => {
     res.status(200).json(projectLink);
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+// Route that deletes a specified link
+router.delete("/:pid/link/:lid", withAuth, async (req, res) => {
+  try {
+    const linkData = await Link.destroy({
+      where: {
+        id: req.params.lid,
+      },
+    });
+
+    if (!linkData) {
+      res.status(404).json({ message: "No link found with this id!" });
+      return;
+    }
+
+    res.status(200).json(linkData);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

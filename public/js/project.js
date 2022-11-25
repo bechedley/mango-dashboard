@@ -105,6 +105,23 @@ const linkAddHandler = async (event) => {
   }
 };
 
+const linkDeleteHandler = async (event) => {
+  if (event.target.hasAttribute("data-lid")) {
+    const lid = event.target.getAttribute("data-lid");
+    const pid = event.target.closest(".link-div").getAttribute("data-pid");
+
+    const response = await fetch(`/api/project/${pid}/link/${lid}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      document.location.replace(`/project/${pid}`);
+    } else {
+      alert("Failed to delete link");
+    }
+  }
+};
+
 document
   .querySelector("#priceModal")
   .addEventListener("submit", budgetUpdateHandler);
@@ -121,3 +138,8 @@ for (let i = 0; i < collaborators.length; i++) {
 document
   .querySelector("#linkModal")
   .addEventListener("submit", linkAddHandler);
+
+const links = document.querySelectorAll(".link-delete");
+for (let i = 0; i < links.length; i++) {
+  links[i].addEventListener("click", linkDeleteHandler);
+}
