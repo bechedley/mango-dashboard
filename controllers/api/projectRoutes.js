@@ -107,4 +107,24 @@ router.post("/:id/tag", withAuth, async (req, res) => {
   }
 });
 
+// Route that deletes a specified tag
+router.delete("/:pid/tag/:tid", withAuth, async (req, res) => {
+  try {
+    const tagData = await Tag.destroy({
+      where: {
+        id: req.params.tid,
+      },
+    });
+
+    if (!tagData) {
+      res.status(404).json({ message: "No tag found with this id!" });
+      return;
+    }
+
+    res.status(200).json(tagData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

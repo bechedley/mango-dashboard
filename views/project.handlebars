@@ -99,12 +99,12 @@
             <div class="container my-5 text-muted">
                 <p>Tags <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#tagModal"><i
                                 class="fa-solid bi-plus" style="font-size: 2rem;"></i></button></p>
-                <div class="row">
+                <div class="row tag-div" data-pid="{{project.id}}">
                     {{#each project.related_tags as |tag|}}
                     <div class="col">
-                        <button type="button" class="btn btn-outline-dark" id="tag-delete"><span><i
+                        <button type="button" class="btn btn-outline-dark tag-delete" data-tid="{{tag.id}}"><i
                                     class="fa-solid bi-xmark"></i>
-                                {{tag_name}} X </span></button>
+                                {{tag_name}} X</button>
                     </div>
                     {{/each}}
                 </div>
@@ -207,8 +207,8 @@
     </div>
 </form>
 <!-- Tags Modal -->
-<form class="form modal fade" id="tagModal" tabindex="-1" role="dialog" aria-labelledby="tagModalLabel" aria-hidden="true"
-    data-id="{{project.id}}">
+<form class="form modal fade" id="tagModal" tabindex="-1" role="dialog" aria-labelledby="tagModalLabel"
+    aria-hidden="true" data-id="{{project.id}}">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -287,7 +287,7 @@
                 <form class="row g-3">
                     <div class="col-auto form-group">
                         <label for="staticEmail2">Add Link</label>
-                        <input type="text" class="form-control" id="new-link" placeholder="www.yourlink.com">
+                        <input type="url" class="form-control" id="new-link" placeholder="https://www.yourlink.com">
                     </div>
                 </form>
             </div>

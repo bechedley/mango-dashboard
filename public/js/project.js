@@ -152,6 +152,23 @@ const tagAddHandler = async (event) => {
   }
 };
 
+const tagDeleteHandler = async (event) => {
+  if (event.target.hasAttribute("data-tid")) {
+    const tid = event.target.getAttribute("data-tid");
+    const pid = event.target.closest(".tag-div").getAttribute("data-pid");
+
+    const response = await fetch(`/api/project/${pid}/tag/${tid}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      document.location.replace(`/project/${pid}`);
+    } else {
+      alert("Failed to delete tag");
+    }
+  }
+};
+
 document
   .querySelector("#priceModal")
   .addEventListener("submit", budgetUpdateHandler);
@@ -173,3 +190,8 @@ for (let i = 0; i < links.length; i++) {
 }
 
 document.querySelector("#tagModal").addEventListener("submit", tagAddHandler);
+
+const tags = document.querySelectorAll(".tag-delete");
+for (let i = 0; i < tags.length; i++) {
+  tags[i].addEventListener("click", tagDeleteHandler);
+}
