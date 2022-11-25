@@ -1,17 +1,18 @@
 <div class="container-fluid mt-4">
     <div class="bg-white rounded d-flex align-items-center justify-content-between" id="header">
-        <button class="btn btn-hide text-uppercase" type="button" data-toggle="collapse" data-target="#filterbar"
-            aria-expanded="false" aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt(Show filters)">
+        <button class="btn btn-hide text-uppercase" type="button" data-bs-toggle="collapse" aria-expanded="false"
+            aria-controls="filterbar" id="filter-btn">
             <span class="fa fa-angle-left" id="filter-angle"></span>
             <span id="btn-txt">Hide filters</span>
         </button>
         <form class="d-flex" id="search-form" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline" type="submit">Search</button>
-    </form>
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline" type="submit">Search</button>
+        </form>
 
-        <button class="btn btn-add text-uppercase justify-content-right" type="button" aria-controls="addproject" id="add-btn">
-            <span id="add-project"></span>
+        <button class="btn btn-add text-uppercase justify-content-right" type="button" aria-controls="addproject"
+            id="add-btn" data-bs-toggle="modal" data-bs-target="#add-project-Modal">
+            <span class="fa bi-plus" id="add-project"></span>
             <span id="btn-txt">Add Project</span>
         </button>
 
@@ -41,12 +42,11 @@
             </div>
             <div class="box border-bottom">
                 <div class="box-label text-uppercase d-flex align-items-center">Tags
-                    <button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box"
-                        aria-expanded="false" aria-controls="inner-box" id="out" onclick="outerFilter()">
-                        <span class="fa fa-plus"></span>
+                    <button class="btn ml-auto" type="button" id="out">
+                        <span class="fa bi-plus"></span>
                     </button>
                 </div>
-                <div id="inner-box" class="collapse mt-2 mr-1">
+                <div id="inner-box" class="mt-2 mr-1">
                     {{#each tags as |tag|}}
                     <div class="my-1">
                         <label class="tick">{{tag.tag_name}}
@@ -59,31 +59,114 @@
             </div>
         </div>
         <div class="d-flex flex-row-reverse">
-            <select class= "float-right" name="sort" id="sort">
-            <option value="" hidden selected>Sort by</option>
-            <option value={{project_name}}>Name</option>
-            <option value={{project_due}}>Due Date</option>
-            <option value={{project_status}}>Status</option>
-        </select>
+            <select class="float-right" name="sort" id="sort">
+                <option value="" hidden selected>Sort by</option>
+                <option value="sort-project-name">Name</option>
+                <option value="sort-project-due">Due Date</option>
+                <option value="sort-project-status">Status</option>
+            </select>
         </div>
         <div id="projects">
             <div class="row mx-0">
                 {{#each projects as |project|}}
                 <div class="project-div col-lg-4 col-md-6" data-id="{{project.id}}">
                     <div class="card d-flex flex-column align-items-center">
-                        <div class="project-name">{{project.project_name}}</div>
+                        <div class="project-name">
+                            <h3>{{project.project_name}}</h3>
+                        </div>
                         <div class="card-img">
                             <br />
-                            <p>{{project.project_summary}}</p>
+                            <p class="text-center">{{project.project_summary}}</p>
                         </div>
                         <div class="card-body pt-5">
                             <div class="d-flex align-items-center justify-content-center colors my-2">
-                                <button class="btn btn-warning my-2 my-sm-0" type="submit">{{project.project_status}}</button>
+                                {{#if (if_active project.project_status) }}
+                                <button type="submit"
+                                    class="status-button btn active-status-button btn btn-orange my-2 my-sm-0">
+                                    {{ format_uppercase project.project_status}}
+                                </button>
+                                {{/if}}
+                                {{#if (if_pending project.project_status) }}
+                                <button type="submit"
+                                    class="status-button btn pending-status-button btn btn-orange my-2 my-sm-0">
+                                    {{ format_uppercase project.project_status}}
+                                </button>
+                                {{/if}}
+                                {{#if (if_upcoming project.project_status) }}
+                                <button type="submit"
+                                    class="status-button btn upcoming-status-button btn btn-orange my-2 my-sm-0">
+                                    {{ format_uppercase project.project_status}}
+                                </button>
+                                {{/if}}
+                                {{#if (if_cancelled project.project_status) }}
+                                <button type="submit"
+                                    class="status-button btn cancelled-status-button btn btn-orange my-2 my-sm-0">
+                                    {{ format_uppercase project.project_status}}
+                                </button>
+                                {{/if}}
+                                {{#if (if_finished project.project_status) }}
+                                <button type="submit"
+                                    class="status-button btn finished-status-button btn btn-orange my-2 my-sm-0">
+                                    {{ format_uppercase project.project_status}}
+                                </button>
+                                {{/if}}
                             </div>
                         </div>
                     </div>
                 </div>
                 {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- New Project Modal -->
+<div class="modal fade" id="add-project-Modal" tabindex="-1" role="dialog" aria-labelledby="addProjectModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProjectModalLabel">Add New Project</h5>
+            </div>
+            <div class="modal-body">
+                <form class="add-project-form">
+                    <div class="mb-3">
+                        <label for="addProjectName" class="form-label">Project Name</label>
+                        <input type="text" class="form-control" id="addProjectName" placeholder="Project Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addProjectDue" class="form-label">Due Date</label>
+                        <input type="date" class="form-control" id="addProjectDue">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addProjectBudget" class="form-label">Project Budget</label>
+                        <input type="text" class="form-control" id="addProjectBudget" placeholder="$">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addProjectSummary" class="form-label">Project Summary</label>
+                        <textarea class="form-control" id="addProjectSummary" rows="3"
+                            placeholder="Short project summary"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="addProjectDescription" class="form-label">Project Description</label>
+                        <textarea class="form-control" id="addProjectSummary" rows="5"
+                            placeholder="Project description"></textarea>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Status</label>
+                        <select class="form-select" id="addProjectStatus">
+                            <option selected>Choose...</option>
+                            <option value="active">Active</option>
+                            <option value="pending">Pending</option>
+                            <option value="upcoming">Upcoming</option>
+                            <option value="cancelled">Cancelled</option>
+                            <option value="finished">Finished</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-orange" id="add-project-btn-submit">Add Project</button>
             </div>
         </div>
     </div>
