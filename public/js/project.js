@@ -185,6 +185,33 @@ const tagDeleteHandler = async (event) => {
   }
 };
 
+const statusUpdateHandler = async (event) => {
+  event.preventDefault();
+
+  // Get the id of the project
+  const id = event.target.closest(".dropdown-menu").getAttribute("data-id");
+
+  // Get the name of the status from the "name" attribute
+  const project_status = event.target.getAttribute("name");
+  if (project_status) {
+    // Send a PUT request to the API endpoint
+    const response = await fetch(`/api/project/${id}/status`, {
+      method: "PUT",
+      body: JSON.stringify({ project_status }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      // If successful, refresh the project page
+      document.location.replace(`/project/${id}`);
+    } else {
+      alert("Error when updating the status!");
+    }
+  } else {
+    alert("Invalid status! Something has went wrong!");
+  }
+};
+
 document
   .querySelector("#projectDeleteModal")
   .addEventListener("submit", projectDeleteHandler);
@@ -214,4 +241,9 @@ document.querySelector("#tagModal").addEventListener("submit", tagAddHandler);
 const tags = document.querySelectorAll(".tag-delete");
 for (let i = 0; i < tags.length; i++) {
   tags[i].addEventListener("click", tagDeleteHandler);
+}
+
+const status = document.querySelectorAll(".status-item");
+for (let i = 0; i < status.length; i++) {
+  status[i].addEventListener("click", statusUpdateHandler);
 }

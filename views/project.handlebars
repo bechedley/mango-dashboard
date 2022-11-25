@@ -10,50 +10,50 @@
                 </h1>
             </div>
             <div class="col-auto">
-                <div class="btn-group">
+                <div class="btn-group dropdown">
                     {{#if (if_active project.project_status) }}
-                    <button type="button" class="status-button btn active-status-button dropdown-toggle"
+                    <button type="button" class="status-button btn active-status-button dropdown-toggle" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ format_uppercase project.project_status}}
                     </button>
                     {{/if}}
 
                     {{#if (if_pending project.project_status) }}
-                    <button type="button" class="status-button btn pending-status-button dropdown-toggle"
+                    <button type="button" class="status-button btn pending-status-button dropdown-toggle" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ format_uppercase project.project_status}}
                     </button>
                     {{/if}}
 
                     {{#if (if_upcoming project.project_status) }}
-                    <button type="button" class="status-button btn upcoming-status-button dropdown-toggle"
+                    <button type="button" class="status-button btn upcoming-status-button dropdown-toggle" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ format_uppercase project.project_status}}
                     </button>
                     {{/if}}
 
                     {{#if (if_cancelled project.project_status) }}
-                    <button type="button" class="status-button btn cancelled-status-button dropdown-toggle"
+                    <button type="button" class="status-button btn cancelled-status-button dropdown-toggle" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ format_uppercase project.project_status}}
                     </button>
                     {{/if}}
 
                     {{#if (if_finished project.project_status) }}
-                    <button type="button" class="status-button btn finished-status-button dropdown-toggle"
+                    <button type="button" class="status-button btn finished-status-button dropdown-toggle" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ format_uppercase project.project_status}}
                     </button>
                     {{/if}}
-
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Active</a></li>
-                        <li><a class="dropdown-item" href="#">Deactive</a></li>
-                        <li><a class="dropdown-item" href="#">Finished</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-id="{{project.id}}">
+                        <li><a class="dropdown-item status-item" href="#" name="active">Active</a></li>
+                        <li><a class="dropdown-item status-item" href="#" name="pending">Pending</a></li>
+                        <li><a class="dropdown-item status-item" href="#" name="finished">Finished</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Progressing</a></li>
+                        <li><a class="dropdown-item status-item" href="#" name="upcoming">Upcoming</a></li>
+                        <li><a class="dropdown-item status-item" href="#" name="cancelled">Cancelled</a></li>
                     </ul>
                 </div>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#projectDeleteModal">Delete</button>
@@ -62,7 +62,6 @@
     </div>
     <div class="row">
         <div class="col-6">
-
             <div class="container mt-5 text-muted">
                 <p class="budget-text">Budget: {{ format_amount project.project_budget}} <span><button type="button"
                             class="btn" data-bs-toggle="modal" data-bs-target="#priceModal"><i
