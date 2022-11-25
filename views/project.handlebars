@@ -77,7 +77,8 @@
                     {{#each project.project_contributors as |collab|}}
                     <div class="col-md-6 mt-2 mb-2 collab-email">
                         <a href="mailto:{{collab.collab_email}}"><span>{{collab.collab_email}}</span></a>
-                        <button class="btn btn-outline-secondary collab-delete" type="button" id="collab-button-delete">X</button>
+                        <button class="btn btn-outline-secondary collab-delete" type="button"
+                            id="collab-button-delete">X</button>
                     </div>
                     {{/each}}
 
@@ -91,7 +92,8 @@
                     {{#each project.project_urls as |link|}}
                     <div class="col-md-6 mt-2 mb-2">
                         <a href={{ format_link link.link_url}} target="blank"><span>{{link.link_url}}</span></a>
-                        <button class="btn btn-outline-secondary link-delete" type="button" id="link-button-delete">X</button>
+                        <button class="btn btn-outline-secondary link-delete" type="button"
+                            id="link-button-delete">X</button>
                     </div>
                     {{/each}}
                 </div>
@@ -113,16 +115,14 @@
         <div class="col-6">
             <div class="container">
                 <div class="container">
-                    <p>Project Summary <span><button type="button"
-                            class="btn" data-bs-toggle="modal" data-bs-target="#summaryModal"><i
-                                class="fa-solid bi-pen"></i></button></span></p>
+                    <p>Project Summary <span><button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#summaryModal"><i class="fa-solid bi-pen"></i></button></span></p>
                     <textarea class="project-text-summary bg-light" rows="3"
                         style="width: 100%;">{{project.project_summary}}</textarea>
                 </div>
                 <div class="container">
-                    <p>Description <span><button type="button"
-                            class="btn" data-bs-toggle="modal" data-bs-target="#descriptionModal"><i
-                                class="fa-solid bi-pen"></i></button></span></p>
+                    <p>Description <span><button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#descriptionModal"><i class="fa-solid bi-pen"></i></button></span></p>
                     <textarea class="project-text-summary bg-light" rows="8"
                         style="width: 100%;">{{project.project_description}}</textarea>
                 </div>
@@ -143,7 +143,8 @@
                 <form class="row g-3">
                     <div class="col-auto form-group">
                         <label for="staticEmail2">Budget</label>
-                        <input type="text" class="form-control-plaintext" id="new-budget" placeholder="{{project.project_budget}}">
+                        <input type="text" class="form-control-plaintext" id="new-budget"
+                            placeholder="{{project.project_budget}}">
                     </div>
                 </form>
             </div>
@@ -167,7 +168,8 @@
                 <form class="row g-3">
                     <div class="col-auto">
                         <label for="staticEmail2">Name</label>
-                        <input type="text-area" class="form-control" rows="1" id="new-name" placeholder={{project.project_name}}>
+                        <input type="text-area" class="form-control" rows="1" id="new-name"
+                            placeholder={{project.project_name}}>
                     </div>
                     <div class="col-auto">
                         <label for="staticEmail2">Due Date</label>
@@ -184,7 +186,8 @@
 </div>
 
 <!-- Collabrators Modal -->
-<form class="form modal fade" id="collModal" tabindex="-1" role="dialog" aria-labelledby="collModalLabel" aria-hidden="true">
+<form class="form modal fade" id="collModal" tabindex="-1" role="dialog" aria-labelledby="collModalLabel"
+    aria-hidden="true" data-id="{{project.id}}">
     <div class="modal-dialog  modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -238,7 +241,8 @@
             <div class="modal-body">
                 <form class="row g-3">
                     <div class="col-auto">
-                        <input type="textarea" class="form-control" rows="2" id="new-summary" placeholder={{project.project_summary}}>
+                        <input type="textarea" class="form-control" rows="2" id="new-summary"
+                            placeholder={{project.project_summary}}>
                     </div>
                 </form>
             </div>
@@ -260,7 +264,8 @@
             <div class="modal-body">
                 <form class="row g-3">
                     <div class="col-auto">
-                        <input type="textarea" class="form-control" rows="4" id="new-description" placeholder={{project.project_description}}>
+                        <input type="textarea" class="form-control" rows="4" id="new-description"
+                            placeholder={{project.project_description}}>
                     </div>
                 </form>
             </div>

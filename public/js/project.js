@@ -1,4 +1,4 @@
-const budgetEditHandler = async (event) => {
+const budgetUpdateHandler = async (event) => {
   event.preventDefault();
 
   // Get the id of the project
@@ -10,7 +10,7 @@ const budgetEditHandler = async (event) => {
   // Collect values from the budget modal
   const project_budget = document.querySelector("#new-budget").value.trim();
   if (project_budget && parseInt(project_budget) !== NaN) {
-    // Send a POST request to the API endpoint
+    // Send a PUT request to the API endpoint
     const response = await fetch(`/api/project/${id}/budget`, {
       method: "PUT",
       body: JSON.stringify({ project_budget }),
@@ -28,6 +28,40 @@ const budgetEditHandler = async (event) => {
   }
 };
 
+const collabAddHandler = async (event) => {
+  event.preventDefault();
+
+  // Get the id of the project
+  let id;
+  if (event.target.hasAttribute("data-id")) {
+    id = event.target.getAttribute("data-id");
+  }
+
+  // Collect values from the budget modal
+  const collab_email = document.querySelector("#new-collab").value.trim();
+  if (collab_email) {
+    // Send a POST request to the API endpoint
+    const response = await fetch(`/api/project/${id}/collab`, {
+      method: "POST",
+      body: JSON.stringify({ collab_email }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      // If successful, refresh the project page
+      document.location.replace(`/project/${id}`);
+    } else {
+      alert("Error when adding the new collaborator!");
+    }
+  } else {
+    alert("Invalid email link!");
+  }
+};
+
 document
   .querySelector("#priceModal")
-  .addEventListener("submit", budgetEditHandler);
+  .addEventListener("submit", budgetUpdateHandler);
+
+document
+  .querySelector("#collModal")
+  .addEventListener("submit", collabAddHandler);
