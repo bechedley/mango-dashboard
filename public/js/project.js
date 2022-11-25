@@ -58,6 +58,23 @@ const collabAddHandler = async (event) => {
   }
 };
 
+const collabDeleteHandler = async (event) => {
+  if (event.target.hasAttribute("data-cid")) {
+    const cid = event.target.getAttribute("data-cid");
+    const pid = event.target.closest(".collab-div").getAttribute("data-pid");
+
+    const response = await fetch(`/api/project/${pid}/collab/${cid}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      document.location.replace(`/project/${pid}`);
+    } else {
+      alert("Failed to delete collaborator");
+    }
+  }
+};
+
 document
   .querySelector("#priceModal")
   .addEventListener("submit", budgetUpdateHandler);
@@ -65,3 +82,8 @@ document
 document
   .querySelector("#collModal")
   .addEventListener("submit", collabAddHandler);
+
+const collaborators = document.querySelectorAll(".collab-delete");
+for (let i = 0; i < collaborators.length; i++) {
+  collaborators[i].addEventListener("click", collabDeleteHandler);
+}

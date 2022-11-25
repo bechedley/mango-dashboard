@@ -73,15 +73,13 @@
                 <p>Collaborators <span><button type="button" class="btn" data-bs-toggle="modal"
                             data-bs-target="#collModal"><i class="fa-solid bi-plus"
                                 style="font-size: 2rem;"></i></button></p>
-                <div class="row">
+                <div class="row collab-div" data-pid="{{project.id}}">
                     {{#each project.project_contributors as |collab|}}
                     <div class="col-md-6 mt-2 mb-2 collab-email">
                         <a href="mailto:{{collab.collab_email}}"><span>{{collab.collab_email}}</span></a>
-                        <button class="btn btn-outline-secondary collab-delete" type="button"
-                            id="collab-button-delete">X</button>
+                        <button class="btn btn-outline-secondary collab-delete" type="button" data-cid="{{collab.id}}">X</button>
                     </div>
                     {{/each}}
-
                 </div>
             </div>
             <div class="container my-5 text-muted">
@@ -92,8 +90,7 @@
                     {{#each project.project_urls as |link|}}
                     <div class="col-md-6 mt-2 mb-2">
                         <a href={{ format_link link.link_url}} target="blank"><span>{{link.link_url}}</span></a>
-                        <button class="btn btn-outline-secondary link-delete" type="button"
-                            id="link-button-delete">X</button>
+                        <button class="btn btn-outline-secondary link-delete" type="button">X</button>
                     </div>
                     {{/each}}
                 </div>
