@@ -3,7 +3,11 @@ const { Tag } = require('../models');
 const tagData = [
   {
     tag_name: "javascript",
-    user_id: (3, 4),
+    user_id: 3,
+  },
+  {
+    tag_name: "javascript",
+    user_id: 4,
   },
   {
     tag_name: "api connection",
@@ -11,7 +15,11 @@ const tagData = [
   },
   {
     tag_name: "front-end",
-    user_id: (2, 4),
+    user_id: 2,
+  },
+  {
+    tag_name: "front-end",
+    user_id: 4,
   },
   {
     tag_name: "client1",
@@ -23,7 +31,11 @@ const tagData = [
   },
   {
     tag_name: "urgent",
-    user_id: (1, 5),
+    user_id: 1,
+  },
+  {
+    tag_name: "urgent",
+    user_id: 5,
   },
   {
     tag_name: "bootstrap",
@@ -31,7 +43,11 @@ const tagData = [
   },
   {
     tag_name: "node.js",
-    user_id: (1, 3),
+    user_id: 1,
+  },
+  {
+    tag_name: "node.js",
+    user_id: 3,
   },
 ];
 

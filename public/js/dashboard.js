@@ -1,3 +1,11 @@
+// Reload the page when the back button is clicked
+if (
+  String(window.performance.getEntriesByType("navigation")[0].type) ===
+  "back_forward"
+) {
+  window.location.reload();
+}
+
 const projectClickHandler = (event) => {
   // Get the id of the project to be rendered
   if (event.currentTarget.hasAttribute("data-id")) {
@@ -49,11 +57,6 @@ const newProjectHandler = async (event) => {
 };
 
 $(document).ready(function () {
-  // Reload the page when the back button is clicked
-  if (String(window.performance.getEntriesByType("navigation")[0].type) === "back_forward") {
-    window.location.reload();
-  }
-
   const getQueryParameter = (param) =>
     new URLSearchParams(document.location.search.substring(1)).get(param);
 
