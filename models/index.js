@@ -18,6 +18,17 @@ Project.belongsTo(User, {
   foreignKey: "user_id",
 });
 
+// User can owns many tags
+User.hasMany(Tag, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE"
+}); 
+
+// Tag belongsTo user
+Tag.belongsTo(User, {
+  foreignKey: "user_id",
+});
+
 // Projects belongsToMany Collabs
 Project.belongsToMany(Collab, {
   // Define the third table needed to store the foreign keys
