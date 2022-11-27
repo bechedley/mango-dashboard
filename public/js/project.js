@@ -1,3 +1,11 @@
+// Reload the page when the back button is clicked
+if (
+  String(window.performance.getEntriesByType("navigation")[0].type) ===
+  "back_forward"
+) {
+  window.location.reload();
+}
+
 const projectDeleteHandler = async (event) => {
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
@@ -115,20 +123,22 @@ const descriptionUpdateHandler = async (event) => {
   }
 
   // Collect values from the description modal
-  const project_description = document.querySelector("#new-description").value.trim();
-    // Send a PUT request to the API endpoint
-    const response = await fetch(`/api/project/${id}/description`, {
-      method: "PUT",
-      body: JSON.stringify({ project_description }),
-      headers: { "Content-Type": "application/json" },
-    });
+  const project_description = document
+    .querySelector("#new-description")
+    .value.trim();
+  // Send a PUT request to the API endpoint
+  const response = await fetch(`/api/project/${id}/description`, {
+    method: "PUT",
+    body: JSON.stringify({ project_description }),
+    headers: { "Content-Type": "application/json" },
+  });
 
-    if (response.ok) {
-      // If successful, refresh the project page
-      document.location.replace(`/project/${id}`);
-    } else {
-      alert("Error when updating the description!");
-    }
+  if (response.ok) {
+    // If successful, refresh the project page
+    document.location.replace(`/project/${id}`);
+  } else {
+    alert("Error when updating the description!");
+  }
 };
 
 const collabAddHandler = async (event) => {
@@ -303,7 +313,7 @@ document
   .querySelector("#projectDeleteModal")
   .addEventListener("submit", projectDeleteHandler);
 
-  document
+document
   .querySelector("#projectModal")
   .addEventListener("submit", nameUpdateHandler);
 
@@ -311,11 +321,11 @@ document
   .querySelector("#priceModal")
   .addEventListener("submit", budgetUpdateHandler);
 
-  document
+document
   .querySelector("#summaryModal")
   .addEventListener("submit", summaryUpdateHandler);
 
-  document
+document
   .querySelector("#descriptionModal")
   .addEventListener("submit", descriptionUpdateHandler);
 
