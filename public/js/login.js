@@ -1,11 +1,11 @@
-$("#signup").click(function () {
-  $("#first").fadeOut("fast", function () {
+$("#signup").click(() => {
+  $("#first").fadeOut("fast", () => {
     $("#second").fadeIn("fast");
   });
 });
 
-$("#signin").click(function () {
-  $("#second").fadeOut("fast", function () {
+$("#signin").click(() => {
+  $("#second").fadeOut("fast", () => {
     $("#first").fadeIn("fast");
   });
 });
@@ -109,10 +109,13 @@ const signupFormHandler = async (event) => {
   }
 };
 
-document
-  .querySelector(".login-form")
-  .addEventListener("submit", loginFormHandler);
-
-document
-  .querySelector(".signup-form")
-  .addEventListener("submit", signupFormHandler);
+$(document).ready(function () {
+  $('#loginBtn').on("click", async function (e) {
+    e.preventDefault();
+    await loginFormHandler(e)
+  })
+  $('#signupBtn').on("click", async function (e) {
+    e.preventDefault();
+    await signupFormHandler(e)
+  })
+})
