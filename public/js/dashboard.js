@@ -79,11 +79,11 @@ $(document).ready(function () {
     }
     document.location.replace("/dashboard" + querySearch);
   });
-  $("#ResetTag").on("click", function (e) {
+  $("#resetBtn").on("click", function (e) {
     e.preventDefault();
     document.location.replace("/dashboard");
   });
-  $("#ApplyTag").on("click", function (e) {
+  $("#applyTag").on("click", function (e) {
     e.preventDefault();
     let tagsList = [];
     $(".tag_checks").each(function () {
