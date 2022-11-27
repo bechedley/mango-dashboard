@@ -3,7 +3,7 @@
 <div class="container-fluid mt-5">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-auto me-auto">
+            <div class="col-auto me-auto name-and-date">
                 <h1 class="text-muted">{{project.project_name}} <span class="project-due-date"> Due: {{ format_date
                         project.project_due}}</span> <span><button type="button" class="btn" data-bs-toggle="modal"
                             data-bs-target="#projectModal"><i class="fa-solid bi-pen"></i></button></span>
@@ -68,7 +68,7 @@
                                 class="fa-solid bi-pen"></i></button></span>
                 </p>
             </div>
-            <div class="container my-5 text-muted">
+            <div class="container my-5 text-muted collaborators-text">
                 <p>Collaborators <span><button type="button" class="btn" data-bs-toggle="modal"
                             data-bs-target="#collModal"><i class="fa-solid bi-plus"
                                 style="font-size: 2rem;"></i></button></p>
@@ -82,7 +82,7 @@
                     {{/each}}
                 </div>
             </div>
-            <div class="container my-5 text-muted">
+            <div class="container my-5 text-muted links-text">
                 <p>Links <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#linkModal"><i
                                 class="fa-solid bi-plus" style="font-size: 2rem;"></i></button></p>
                 <div class="row link-div" data-pid="{{project.id}}">
@@ -95,7 +95,7 @@
                     {{/each}}
                 </div>
             </div>
-            <div class="container my-5 text-muted">
+            <div class="container my-5 text-muted tags-text">
                 <p>Tags <span><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#tagModal"><i
                                 class="fa-solid bi-plus" style="font-size: 2rem;"></i></button></p>
                 <div class="row tag-div" data-pid="{{project.id}}">
@@ -111,13 +111,13 @@
         </div>
         <div class="col-6">
             <div class="container">
-                <div class="container">
+                <div class="container summary-text">
                     <p>Project Summary <span><button type="button" class="btn" data-bs-toggle="modal"
                                 data-bs-target="#summaryModal"><i class="fa-solid bi-pen"></i></button></span></p>
                     <textarea class="project-text-summary bg-light" rows="3"
                         style="width: 100%;">{{project.project_summary}}</textarea>
                 </div>
-                <div class="container">
+                <div class="container description-text">
                     <p>Description <span><button type="button" class="btn" data-bs-toggle="modal"
                                 data-bs-target="#descriptionModal"><i class="fa-solid bi-pen"></i></button></span></p>
                     <textarea class="project-text-summary bg-light" rows="8"
