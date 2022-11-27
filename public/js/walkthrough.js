@@ -654,15 +654,17 @@ tour2.addStep({
 // Show tour based on location
 
 $(function () {
-  if (document.location.href.indexOf('dashboard') > -1) {
-    tour1.start();
-  }
+  if ((document.location.href.indexOf('dashboard') > -1) && (!localStorage.getItem('shepherd-tour1'))) {
+      tour1.start();
+      localStorage.setItem('shepherd-tour1', 'yes');
+    }
 });
 
 $(function () {
-  if (document.location.href.indexOf('project') > -1) {
-    tour2.start();
-  }
+  if ((document.location.href.indexOf('project') > -1) && (!localStorage.getItem('shepherd-tour2'))) {
+      tour2.start();
+      localStorage.setItem('shepherd-tour2', 'yes');
+    }
 });
 
 
