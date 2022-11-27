@@ -1,5 +1,13 @@
 const router = require("express").Router();
-const { Project, Collab, ProjectCollab, Link, ProjectLink, Tag, ProjectTag } = require("../../models");
+const {
+  Project,
+  Collab,
+  ProjectCollab,
+  Link,
+  ProjectLink,
+  Tag,
+  ProjectTag,
+} = require("../../models");
 const withAuth = require("../../utils/auth");
 
 // Route that deletes a specified project
@@ -32,7 +40,11 @@ router.put("/:id/name", withAuth, async (req, res) => {
     });
 
     if (!projectData) {
-      res.status(404).json({ message: "Error when trying to update the name and due date!" });
+      res
+        .status(404)
+        .json({
+          message: "Error when trying to update the name and due date!",
+        });
       return;
     }
 
@@ -52,7 +64,9 @@ router.put("/:id/budget", withAuth, async (req, res) => {
     });
 
     if (!projectData[0]) {
-      res.status(404).json({ message: "Error when trying to update the budget!" });
+      res
+        .status(404)
+        .json({ message: "Error when trying to update the budget!" });
       return;
     }
 
@@ -72,7 +86,9 @@ router.put("/:id/summary", withAuth, async (req, res) => {
     });
 
     if (!projectData) {
-      res.status(404).json({ message: "Error when trying to update the summary!" });
+      res
+        .status(404)
+        .json({ message: "Error when trying to update the summary!" });
       return;
     }
 
@@ -112,7 +128,7 @@ router.post("/:id/collab", withAuth, async (req, res) => {
   }
 });
 
-// Route that deletes a specified collaborator 
+// Route that deletes a specified collaborator
 router.delete("/:pid/collab/:cid", withAuth, async (req, res) => {
   try {
     const collabData = await Collab.destroy({
@@ -170,7 +186,10 @@ router.delete("/:pid/link/:lid", withAuth, async (req, res) => {
 // Route that adds a new tag to the specified project
 router.post("/:id/tag", withAuth, async (req, res) => {
   try {
-    const newTag = await Tag.create(req.body);
+    const newTag = await Tag.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
     const projectTag = await ProjectTag.create({
       project_id: req.params.id,
       tag_id: newTag.id,
@@ -225,7 +244,7 @@ router.put("/:id/status", withAuth, async (req, res) => {
 });
 
 // Route that adds a new project
-router.post('/', withAuth, async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     const newProject = await Project.create({
       ...req.body,
