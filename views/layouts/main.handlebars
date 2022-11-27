@@ -27,18 +27,18 @@
 </head>
 
 <body class="flex-column min-100-vh">
-    <div class="container-fluid">
-        <nav class="navbar navbar-light bg-light justify-content-between">
-            <a class="navbar-brand" href="/dashboard">
-                <img src="/images/mango-logo-final.png" width="200" class="d-inline-block align-top" alt="Mango Logo">
-            </a>
-            <form class="form-inline">
-                <button id="logout" class="btn btn-outline my-2 my-sm-0" type="submit">Logout</button>
-            </form>
-        </nav>
-    </div>
-
     <main class="col-auto">
+        <div class="container-fluid p-0">
+            <nav class="navbar navbar-light bg-light justify-content-between">
+                <a class="navbar-brand" href="/dashboard">
+                    <img src="/images/mango-logo-final.png" width="200" class="d-inline-block align-top"
+                        alt="Mango Logo">
+                </a>
+                <form class="form-inline">
+                    <button id="logout" class="btn btn-outline my-2 my-sm-0" type="submit">Logout</button>
+                </form>
+            </nav>
+        </div>
         {{{body}}}
     </main>
     <footer class="page-footer orange accent-2">

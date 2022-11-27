@@ -7,15 +7,32 @@
   font-family: "Poppins", sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: #f4f4f4;
-  height: 100%;
+  display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "main" "footer";
+    grid-template-rows: 1fr 80px;
+}
+
+main {
+    grid-area: main;
 }
 
 footer {
   color: #f4f4f4;
   background-color: #ff935d;
-  padding: 5px;
+  grid-area: footer;
+}
+
+.footer-copyright {
+    position: relative;
+    top: -10%;
 }
 
 h1 {
