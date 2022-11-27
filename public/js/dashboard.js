@@ -6,53 +6,37 @@ const projectClickHandler = (event) => {
   }
 };
 
-// const newFormHandler = async (event) => {
-//     event.preventDefault();
+const newProjectHandler = async (event) => {
+    event.preventDefault();
 
-//     const name = document.querySelector('#project-name').value.trim();
-//     const needed_funding = document.querySelector('#project-budget').value.trim();
-//     const summary = document.querySelector('#project-desc').value.trim();
+    const project_name = document.querySelector("#addProjectName").value.trim();
+    const project_budget = document.querySelector("#addProjectBudget").value.trim();
+    const project_due = document.querySelector("#addProjectDue").value.trim();
+    const project_summary = document.querySelector("#addProjectSummary").value.trim();
+    const project_description= document.querySelector("#addProjectDescription").value.trim();
+    const project_status = document.querySelector("#addProjectStatus").value.trim();
 
-//     if (name && needed_funding && description) {
-//       const response = await fetch(`/api/projects`, {
-//         method: 'POST',
-//         body: JSON.stringify({ name, needed_funding, description }),
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       });
+    if (project_name && project_summary && project_status) {
+      const response = await fetch(`/api/project`, {
+        method: 'POST',
+        body: JSON.stringify({ project_name, project_budget, project_due, project_summary, project_description, project_status }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-//       if (response.ok) {
-//         document.location.replace('/profile');
-//       } else {
-//         alert('Failed to create project');
-//       }
-//     }
-//   };
+      if (response.ok) {
+        document.location.replace("/dashboard");
+      } else {
+        alert('Failed to create project');
+      }
+    }
+  };
+  
+  document
+    .querySelector(".add-project-form")
+    .addEventListener('submit', newProjectHandler);
 
-//   const delButtonHandler = async (event) => {
-//     if (event.target.hasAttribute('data-id')) {
-//       const id = event.target.getAttribute('data-id');
-
-//       const response = await fetch(`/api/projects/${id}`, {
-//         method: 'DELETE',
-//       });
-
-//       if (response.ok) {
-//         document.location.replace('/profile');
-//       } else {
-//         alert('Failed to delete project');
-//       }
-//     }
-//   };
-
-//   document
-//     .querySelector('.new-project-form')
-//     .addEventListener('submit', newFormHandler);
-
-//   document
-//     .querySelector('.project-list')
-//     .addEventListener('click', delButtonHandler);
 
 const projects = document.querySelectorAll(".project-div");
 
