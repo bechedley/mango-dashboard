@@ -49,8 +49,14 @@ const newProjectHandler = async (event) => {
 };
 
 $(document).ready(function () {
+  // Reload the page when the back button is clicked
+  if (String(window.performance.getEntriesByType("navigation")[0].type) === "back_forward") {
+    window.location.reload();
+  }
+
   const getQueryParameter = (param) =>
     new URLSearchParams(document.location.search.substring(1)).get(param);
+
   if (getQueryParameter("tags") != null) {
     let tagQuery = getQueryParameter("tags");
     $(".tag_checks").each(function () {
@@ -59,6 +65,7 @@ $(document).ready(function () {
       }
     });
   }
+
   $("#search-form").on("submit", function (e) {
     e.preventDefault();
     let userSearch = $("#search-form input").val();
@@ -67,6 +74,7 @@ $(document).ready(function () {
       document.location.replace("/dashboard?q=" + userSearch);
     } else console.log("empty");
   });
+
   $("#sortBtn").on("click", function (e) {
     e.preventDefault();
     let sortVal = $("#sort").find(":selected").val();
@@ -79,10 +87,12 @@ $(document).ready(function () {
     }
     document.location.replace("/dashboard" + querySearch);
   });
+
   $("#resetBtn").on("click", function (e) {
     e.preventDefault();
     document.location.replace("/dashboard");
   });
+
   $("#applyTag").on("click", function (e) {
     e.preventDefault();
     let tagsList = [];

@@ -91,6 +91,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
     }
 
     const tagData = await Tag.findAll({
+      where: {user_id: req.session.user_id},
       order: [["tag_name", "ASC"]],
     });
 
