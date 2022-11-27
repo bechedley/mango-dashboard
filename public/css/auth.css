@@ -29,8 +29,13 @@ h3 {
   text-transform: uppercase;
 }
 
-.mybtn {
+.myBtn:hover,
+.myBtn:hover:active,
+.myBtn:focus {
   border-radius: 50px;
+  background-color: #ff935dc2;
+  color: white;
+  border-radius: var(--bs-btn-border-radius);
 }
 
 .login-or {
