@@ -193,6 +193,21 @@ button.btn-outline:focus {
   background-color: #994a00;
 }
 
+.tag-delete{
+  border: #ff935d solid 0.5px;
+  color: #ff935d;
+}
+
+.collab-delete {
+  border: none;
+  color: red;
+}
+
+.link-delete {
+  border: none;
+  color: red;
+}
+
 .project-div {
   margin-bottom: 10px;
 }

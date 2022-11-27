@@ -27,6 +27,12 @@ SQL Data Types for MySQL, SQL Server, and MS Access by W3 Schools: (https://www.
 Bootstrap CSS Framework: (https://getbootstrap.com/)
 Bootstrap Documentation: (https://getbootstrap.com/docs/5.2/getting-started/introduction/)
 
+Handlebars Documentation on Built-in Helpers: (https://handlebarsjs.com/guide/builtin-helpers.html#if)
+Stack Overflow: Handlebarsjs check if a string is equal to a value, answers by nwxdev and Mihail (https://stackoverflow.com/questions/34252817/handlebarsjs-check-if-a-string-is-equal-to-a-value) 
+
+Shepherd.js Documentation: (https://shepherdjs.dev/docs/)
+Shepherd.js Github Repo: (https://github.com/shipshapecode/shepherd)
+
 Common js functions and parameters, for loops and arrays: JS CheatSheet by HTML CheatSheet (https://htmlcheatsheet.com/js/)
 
 ## License
