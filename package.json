@@ -1,7 +1,7 @@
 {
   "name": "mango-dashboard",
   "version": "1.0.0",
-  "description": "",
+  "description": "This repository is where we build code for the Mango Project Management Dashboard.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,6 +25,15 @@
     "handlebars": "^4.7.6",
     "luxon": "^3.1.0",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5"
-  }
+    "sequelize": "^6.3.5",
+    "shepherd.js": "^11.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bechedley/mango-dashboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bechedley/mango-dashboard/issues"
+  },
+  "homepage": "https://github.com/bechedley/mango-dashboard#readme"
 }

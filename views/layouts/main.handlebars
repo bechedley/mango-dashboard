@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/auth.css">
     <link rel="stylesheet" href="/css/project.css">
+    <link rel="stylesheet" href="/css/custom-shepherd.css">
+
+<script src="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/js/shepherd.min.js"></script>
 </head>
 
 <body class="flex-column min-100-vh">
@@ -32,7 +35,7 @@
             <nav class="navbar navbar-light bg-light justify-content-between">
                 <a class="navbar-brand" href="/dashboard">
                     <img src="/images/mango-logo-final.png" width="200" class="d-inline-block align-top"
-                        alt="Mango Logo">
+                        id="mango-logo" alt="Mango Logo">
                 </a>
                 <form class="form-inline">
                     <button id="logout" class="btn btn-outline my-2 my-sm-0" type="submit">Logout</button>
@@ -50,6 +53,11 @@
     </footer>
 
     <script src="/js/logout.js"></script>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/dashboard.js"></script>
+    <script src="/js/walkthrough.js"></script>
+
 </body>
 
 </html>
