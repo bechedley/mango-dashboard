@@ -40,11 +40,9 @@ router.put("/:id/name", withAuth, async (req, res) => {
     });
 
     if (!projectData) {
-      res
-        .status(404)
-        .json({
-          message: "Error when trying to update the name and due date!",
-        });
+      res.status(404).json({
+        message: "Error when trying to update the name and due date!",
+      });
       return;
     }
 
