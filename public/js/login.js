@@ -57,9 +57,9 @@ $(function () {
       email: "Please enter a valid email address",
     },
 
-    submitHandler: function (form) {
-      form.submit();
-    },
+    // submitHandler: function (form) {
+    //   form.submit();
+    // },
   });
 });
 
