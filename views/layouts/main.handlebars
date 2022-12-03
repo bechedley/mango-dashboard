@@ -37,9 +37,11 @@
                     <img src="/images/mango-logo-final.png" width="200" class="d-inline-block align-top"
                         id="mango-logo" alt="Mango Logo">
                 </a>
+                {{#if logged_in}}
                 <form class="form-inline">
                     <button id="logout" class="btn btn-outline my-2 my-sm-0" type="submit">Logout</button>
                 </form>
+                {{/if}}
             </nav>
         </div>
         {{{body}}}
